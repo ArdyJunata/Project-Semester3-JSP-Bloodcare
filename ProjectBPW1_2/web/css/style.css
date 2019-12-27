@@ -1,0 +1,101 @@
+.main {
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    margin :0;
+}
+
+.section {
+    padding: 0;
+}
+
+.nav {
+    position: absolute;
+    padding: 17px;
+    height: 100px;
+}
+
+.heading1 {
+    padding-top: 80px;
+    padding-bottom: 140px;
+    color: white;
+}
+
+.btn-home {
+    border-radius: 10px;
+    color: #ef5350;
+    font-weight: bold;
+}
+
+.btn-login {
+    border-radius: 10px; 
+    color: #ef5350;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.btn-join {
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.about {
+    background-size: cover;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.candon {
+    background-size: cover;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    color: white;
+}
+
+.masuk-container {
+    border: 1px solid #fff;
+    padding : 20px 30px 20px 30px;
+    margin-top: 20vh;
+    background-color: white;
+    border-radius: 15px; 
+}
+
+.bg {
+    background-color:rgb(255,0,0, 0.6);
+    width: 100%;
+    height: 100vh;
+}
+
+ /* label color */
+   .input-field label {
+     color: #000;
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: #000;
+   }
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid #000;
+     box-shadow: 0 1px 0 0 #000;
+   }
+   /* valid color */
+   .input-field input[type=text].valid {
+     border-bottom: 1px solid #000;
+     box-shadow: 0 1px 0 0 #000;
+   }
+   /* invalid color */
+   .input-field input[type=text].invalid {
+     border-bottom: 1px solid #000;
+     box-shadow: 0 1px 0 0 #000;
+   }
+   /* icon prefix focus color */
+   .input-field .prefix.active {
+     color: #000;
+   }
