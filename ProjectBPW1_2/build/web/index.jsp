@@ -9,7 +9,7 @@
 <%@include file="templates/navbar.jsp" %>
 <div class="section">
     <div class="red lighten-1">
-        <div class="container">
+        <div class="container"> 
             <br>
             <div class="col s2"></div>
             <div class="col s8">

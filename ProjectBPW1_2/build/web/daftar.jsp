@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col m6 offset-m3">
-                <form class="masuk-container center-align z-depth-3">
+                <form action="daftarController" method="post" class="masuk-container center-align z-depth-3">
                     <h4>Daftar</h4>
                     <div class="row">
                         <div class="col m4">
@@ -20,18 +20,18 @@
                         <div class="col m8">
                             <div class="input-field col s12 ">
                                 <i class="material-icons prefix">account_circle</i>
-                                <input value="" name="email" type="text" class="validate">
-                                <label class="active" for="first_name2">Nama Lengkap</label>
+                                <input id="nama" name="nama" type="text" class="validate">
+                                <label for="nama">Nama Lengkap</label>
                             </div>
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">email</i>
-                                <input value="" name="email" type="text" class="validate">
-                                <label class="active" for="first_name2">Email</label>
+                                <input id="email" name="email" type="email" class="validate">
+                                <label for="email">Email</label>
                             </div>
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">vpn_key</i>
-                                <input value="" name="katasandi" type="text" class="validate">
-                                <label class="active" for="first_name2">Kata Sandi</label>
+                                <input id="katasandi" name="katasandi" type="password" class="validate">
+                            <label for="katasandi">Kata Sandi</label>
                             </div>
                             <button class="btn red lighten-1">Daftar</button>
                         </div>

@@ -1,0 +1,20 @@
+DATABASE BLOODCARE
+
+-user
+ id, nama, email, nohp, image, password, role_id, tanggal lahir, berat badan, jenis kelamin, stok
+-user_role
+ id, nama_role
+-postingan
+ id, nama penerima, email, goldar, rh, jml kantong, keterangan userid,
+-pendonor
+ id, userid, jenis_donor
+-transaksi
+ id, tanggal , idpost, idonor, status
+-rutin
+ iduser, tgl donor
+
+jenis status
+- direquest
+- dibatalkan
+- proses
+- selesai

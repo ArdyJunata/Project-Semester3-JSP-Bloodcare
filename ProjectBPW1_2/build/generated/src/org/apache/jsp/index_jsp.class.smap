@@ -9,17 +9,21 @@ index.jsp
 templates/header.jsp
 + 2 navbar.jsp
 templates/navbar.jsp
-+ 3 modalPencarianDarah.jsp
++ 3 modalSyaratDonor.jsp
+templates/modalSyaratDonor.jsp
++ 4 modalPencarianDarah.jsp
 templates/modalPencarianDarah.jsp
-+ 4 footer.jsp
++ 5 footer.jsp
 templates/footer.jsp
 *L
-5,4:52
-5#1,18:55
-8#0:72
-5#2,20:73
-9#0,51:93
-5#3,53:143
-59#0:195
-5#4,10:196
+5,4:53
+5#1,18:56
+8#0:73
+5#2,39:74
+9#0,64:113
+5#3,29:176
+72#0:204
+5#4,65:205
+73#0:269
+5#5,9:270
 *E
