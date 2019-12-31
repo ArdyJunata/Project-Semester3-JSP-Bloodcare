@@ -3,6 +3,15 @@ package helper;
 public class Postingan {
 
     String namaPenerima, noHp, alamat, goldar, rh, keterangan, userId;
+    int id, jmlKantung;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUserId() {
         return userId;
@@ -11,7 +20,6 @@ public class Postingan {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-    int jmlKantung;
 
     public String getNamaPenerima() {
         return namaPenerima;

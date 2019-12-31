@@ -44,7 +44,7 @@ public class loginController extends HttpServlet {
             user.setCek(1);
             session.setAttribute("index", user);
         } else {
-            String pesan = "Email belum terdaftar / Katasandi Salah";
+            String pesan = "kesalahan, silahkan login kembali";
             request.setAttribute("duplikatEmail", pesan);
             control = request.getRequestDispatcher("/masuk.jsp");
         }

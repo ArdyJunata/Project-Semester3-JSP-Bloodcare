@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 import helper.*;
+import java.util.ArrayList;
 import model.*;
 
 /**
@@ -25,7 +26,20 @@ public class postinganController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String cek = request.getParameter("aksi");
+        RequestDispatcher control = null;
+        PostinganHome home = new PostinganHome();
+        int id = Integer.parseInt(request.getParameter("id"));
+        if (cek.equals("hapus")) {
+            if (home.deletePost(id) == true) {
+                home.deleteTrans(id);
+                control = request.getRequestDispatcher("/halamanUser.jsp");
+            } else {
+                control = request.getRequestDispatcher("/halamanUser.jsp");
+                System.out.println("gagal");
+            }
+            control.forward(request, response);
+        }
     }
 
     @Override
@@ -57,7 +71,7 @@ public class postinganController extends HttpServlet {
         posting.setUserId(email);
 
         if (home.insertUser(posting) == true) {
-            control = request.getRequestDispatcher("/halamanPostingan.jsp");
+            control = request.getRequestDispatcher("/transaksiController");
         } else {
             control = request.getRequestDispatcher("/index.jsp");
         }

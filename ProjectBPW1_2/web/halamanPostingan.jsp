@@ -11,8 +11,8 @@
 <%@page import="helper.*"%>
 <%@page import="model.*"%>
 <%
-
-    ArrayList<Postingan> list = PostinganHome.selectAll();
+    String email = user.getEmail();
+    ArrayList<Postingan> list = PostinganHome.selectAllOther(email);
 
 %>
 
