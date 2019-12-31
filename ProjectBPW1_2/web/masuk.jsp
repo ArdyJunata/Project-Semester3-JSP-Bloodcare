@@ -6,38 +6,71 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="templates/header.jsp" %>
+<%
+    String pesan = (String) request.getAttribute("duplikatEmail");
+    boolean cek = false;
+    if (pesan == null) {
+        cek = false;
+    } else {
+        cek = true;
+    }
 
+
+%>
 <div class="section bg">
     <div class="container">
         <div class="row">
             <div class="col m6 offset-m3">
-                <form action="index.jsp" class="masuk-container center-align z-depth-3">
-                    <h4>Masuk</h4>
+                <form action="loginController" method="post" class="masuk-container z-depth-3">
+                    <h4 class="center-align">Masuk</h4>
                     <div class="row">
                         <div class="col m4">
                             <img src="img/user.png" width="160">
                         </div>
                         <div class="col m8">
-                            <div class="input-field col s12 ">
+                            <div class="input-field col s12">
                                 <i class="material-icons prefix">email</i>
-                                <input value="" name="email" type="text" class="validate">
-                                <label class="active" for="first_name2">Email</label>
+                                <input id="email" name="email" type="email" class="validate">
+                                <label for="email">Email</label>
+                                <% if (cek == true) {%>
+                                <span class="helper-text align-left red-text"><%=pesan%></span>
+                                <% } else {%>
+                                <% }%>
                             </div>
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">vpn_key</i>
-                                <input value="" name="katasandi" type="text" class="validate">
-                                <label class="active" for="first_name2">Kata Sandi</label>
+                                <input id="katasandi" name="katasandi" type="password" class="validate">
+                                <label for="katasandi">Kata Sandi</label>
                             </div>
-                            <button class="btn red lighten-1">Masuk</button>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix"></i>
+                                <select>
+                                    <option value="" disabled selected>Pilih Login Sebagai</option>
+                                    <option value="1">Admin</option>
+                                    <option value="2">Masyarakat</option>
+                                    <option value="3">Rumah Sakit</option>
+                                    <option value="4">UTD</option>
+                                </select>
+                            </div>
+                        <button class="btn red lighten-1">Masuk</button>
                         </div>
                     </div>
-                    <br>
-                    <p>belum menjadi anggota ? Klik <a href="daftar.jsp">Daftar</a></p>
+                    <p class="center-align">belum menjadi anggota ? Klik <a href="daftar.jsp">Daftar</a></p>
                 </form>
             </div>
         </div>
     </div>
 </div>
 </div>
+
+<script>
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        const box = document.querySelectorAll("select");
+        M.FormSelect.init(box, {});
+    });
+    
+</script>
+
 
 <%@include file="templates/footer.jsp" %>

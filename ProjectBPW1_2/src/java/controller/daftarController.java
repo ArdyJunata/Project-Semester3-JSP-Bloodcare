@@ -21,7 +21,6 @@ import javax.servlet.RequestDispatcher;
  */
 public class daftarController extends HttpServlet {
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,20 +30,21 @@ public class daftarController extends HttpServlet {
         String nama = request.getParameter("nama");
         String email = request.getParameter("email");
         String password = request.getParameter("katasandi");
-        
-        
+        String pesan = null;
+
         user.setNama(nama);
         user.setEmail(email);
         user.setPassword(password);
-        
-        if(userHome.insertUser(user) == true) {
-            control = request.getRequestDispatcher("/index.jsp");
-            control.forward(request, response);
+
+        if (userHome.insertUser(user) == true) {
+            control = request.getRequestDispatcher("/masuk.jsp");
+            control.include(request, response);
         } else {
+            pesan = "Email telah terdaftar";
+            request.setAttribute("duplikatEmail", pesan);
             control = request.getRequestDispatcher("/daftar.jsp");
             control.forward(request, response);
         }
-        
-    }
 
+    }
 }

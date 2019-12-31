@@ -5,8 +5,15 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="helper.*"%>
 <%@include file="templates/header.jsp" %>
 <%@include file="templates/navbar.jsp" %>
+<%
+
+    String email = user.getEmail();
+
+%>
+
 <div class="section">
     <div class="red lighten-1">
         <div class="container"> 
@@ -24,14 +31,16 @@
         </div>
     </div>
 </div>
+<% if (cekLogin == false) { %>
 <!--ABOUT-->
-<!--<div class="section about">
+<div class="section about">
     <div class="container center-align">
         <h3>BERGABUNG DENGAN BLOODCARE</h3>
         <p>miliki akun bloodcare anda untuk membantu donor darah dan cari pendonor anda</p>
         <a href="daftar.jsp" class="waves-effect red lighten-1 btn-large btn-join">Daftar Akun</a>
     </div>
-</div>-->
+</div>
+<% } else { %>
 
 <!--Donor Rutin -->
 <div class="section about">
@@ -41,6 +50,7 @@
         <a href="daftar.jsp" class="waves-effect red lighten-1 btn-large btn-join">Donor Rutin</a>
     </div>
 </div>
+<% } %>
 
 <!--siapa saja-->
 <div class="section candon red lighten-1">
@@ -56,19 +66,23 @@
         const box = document.querySelectorAll("#cari");
         M.Modal.init(box, {});
     });
-    
+
     document.addEventListener("DOMContentLoaded", function () {
         const box = document.querySelectorAll("#syarat");
         M.Modal.init(box, {});
     });
-    
+
     document.addEventListener("DOMContentLoaded", function () {
         const box = document.querySelectorAll("select");
         M.FormSelect.init(box, {});
     });
-    
+
 </script>
 
-<%@include file="templates/modalSyaratDonor.jsp" %>
 <%@include file="templates/modalPencarianDarah.jsp" %>
+            <input type="hidden" name="email" value="<%=email%>">
+        </form>
+    </div>
+</div>
+<%@include file="templates/modalSyaratDonor.jsp" %>
 <%@include file="templates/footer.jsp" %>

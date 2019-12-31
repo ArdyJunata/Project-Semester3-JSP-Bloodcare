@@ -5,6 +5,32 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="helper.*"%>
+<%@page import="model.*"%>
+<%
+
+    boolean cekLogin = false;
+    String nama = "none";
+    User user = (User) session.getAttribute("dataUser");
+    User cek = (User) session.getAttribute("index");
+    try {
+
+        if (cek.getCek() == 1) {
+            UserHome home = new UserHome();
+
+            cekLogin = home.cekLogin(user);
+
+            nama = user.getNama();
+        } else {
+            cekLogin = false;
+            nama = null;
+        }
+    } catch (NullPointerException ex) {
+        RequestDispatcher control = null;
+        control = request.getRequestDispatcher("/loginController");
+        control.forward(request, response);
+    }
+%>
 <div class="section">
     <div class="navbar-fixed">
         <nav class="z-depth-0 navdy red lighten-1 nav">
@@ -16,12 +42,20 @@
                 </ul>
                 <a href="#!" class="brand-logo"><i class="material-icons"></i>BloodCare</a>
                 <ul id="navbar-items" class="right hide-on-med-and-down">
+
+                    <%if (cekLogin == true) {%>
                     <li>
                         <a class="dropdown-trigger" data-target="dropdown1" style="font-weight: bold" href="#">
-                            Muhammad Ardy Junata<span class="material-icons">arrow_drop_down</span>
+                            <%=nama%><span class="material-icons">arrow_drop_down</span>
                         </a>
                     </li>
-                    <li><a href="masuk.jsp" class="waves-effect white btn-small btn-login">Logout</a></li>
+                    <li><a href="loginController" class="waves-effect white btn-small btn-login">Logout</a></li>
+
+                    <% } else { %>
+                    </li>
+                    <li><a href="masuk.jsp" class="waves-effect white btn-small btn-login">Login</a></li>  
+                        <% }%>
+
                 </ul>
             </div>
         </nav>

@@ -6,13 +6,24 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="templates/header.jsp" %>
+<%
+    String pesan = (String) request.getAttribute("duplikatEmail");
+    boolean cek = false;
+    if (pesan == null) {
+        cek = false;
+    } else {
+        cek = true;
+    }
+
+
+%>
 
 <div class="section bg">
     <div class="container">
         <div class="row">
             <div class="col m6 offset-m3">
-                <form action="daftarController" method="post" class="masuk-container center-align z-depth-3">
-                    <h4>Daftar</h4>
+                <form action="daftarController" method="post" class="masuk-container z-depth-3">
+                    <h4 class="center-align">Daftar</h4>
                     <div class="row">
                         <div class="col m4">
                             <img src="img/user.png" width="160">
@@ -27,17 +38,20 @@
                                 <i class="material-icons prefix">email</i>
                                 <input id="email" name="email" type="email" class="validate">
                                 <label for="email">Email</label>
+                                <% if (cek == true) {%>
+                                <span class="helper-text align-left red-text"><%=pesan%></span>
+                                <% } else {%>
+                                <% }%>
                             </div>
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">vpn_key</i>
                                 <input id="katasandi" name="katasandi" type="password" class="validate">
-                            <label for="katasandi">Kata Sandi</label>
+                                <label for="katasandi">Kata Sandi</label>
                             </div>
-                            <button class="btn red lighten-1">Daftar</button>
+                            <button class="btn red lighten-1 center-align">Daftar</button>
                         </div>
                     </div>
-                    <br>
-                    <p>sudah menjadi anggota ? Klik <a href="masuk.jsp">Masuk</a></p>
+                    <p class="center-align">sudah menjadi anggota ? Klik <a href="masuk.jsp">Masuk</a></p>
                 </form>
             </div>
         </div>

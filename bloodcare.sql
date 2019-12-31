@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Des 2019 pada 12.02
+-- Waktu pembuatan: 31 Des 2019 pada 08.53
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -63,12 +63,20 @@ CREATE TABLE `postingan` (
   `id` int(11) NOT NULL,
   `nama_penerima` varchar(50) NOT NULL,
   `no_hp` varchar(50) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
   `goldar` varchar(10) NOT NULL,
   `rh` varchar(10) NOT NULL,
   `jml_kantong` int(11) NOT NULL,
   `keterangan` varchar(255) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `postingan`
+--
+
+INSERT INTO `postingan` (`id`, `nama_penerima`, `no_hp`, `alamat`, `goldar`, `rh`, `jml_kantong`, `keterangan`, `user_id`) VALUES
+(1, 'Prastyo Nugroho', '082388085962', 'w', 'B', '+', 2, 's', 'ardy18ti@mahasiswa.pcr.ac.id');
 
 -- --------------------------------------------------------
 
@@ -165,7 +173,8 @@ ALTER TABLE `transaksi`
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indeks untuk tabel `user_role`
@@ -193,7 +202,7 @@ ALTER TABLE `pendonoran`
 -- AUTO_INCREMENT untuk tabel `postingan`
 --
 ALTER TABLE `postingan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `transaksi`

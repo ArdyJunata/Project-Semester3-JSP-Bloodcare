@@ -7,7 +7,16 @@ public class User {
     String nama, email, image, jenisKelamin, password;
     Date tanggal;
     int umur, beratBadan, stok, roleId;
-    
+    int cek;
+
+    public int getCek() {
+        return cek;
+    }
+
+    public void setCek(int cek) {
+        this.cek = cek;
+    }
+
     public User() {
         image = "not set";
         jenisKelamin = "not set";
@@ -15,9 +24,9 @@ public class User {
         beratBadan = 0;
         stok = 0;
         roleId = 2;
-        
+
     }
-    
+
     public String getPassword() {
         return password;
     }
