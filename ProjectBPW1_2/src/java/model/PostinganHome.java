@@ -85,7 +85,7 @@ public class PostinganHome {
         ArrayList<Postingan> list = new ArrayList<>();
 
         try {
-            String query = "SELECT * FROM postingan where user_id <> '" + email + "'";
+            String query = "select * from postingan, transaksi where transaksi.post_id = postingan.id and postingan.user_id <> '" + email + "'";
             akses.connect();
 
             ResultSet rs = akses.executeQuery(query);
@@ -101,6 +101,7 @@ public class PostinganHome {
                 posting.setJmlKantung(rs.getInt(7));
                 posting.setKeterangan(rs.getString(8));
                 posting.setUserId(rs.getString(9));
+                posting.setStatus(rs.getString(12));
                 list.add(posting);
             }
 
@@ -116,7 +117,7 @@ public class PostinganHome {
         ArrayList<Postingan> list = new ArrayList<>();
 
         try {
-            String query = "SELECT * FROM postingan where user_id = '" + email + "'";
+            String query = "select * from postingan, transaksi where transaksi.post_id = postingan.id and postingan.user_id = '" + email + "'";
             akses.connect();
 
             ResultSet rs = akses.executeQuery(query);
@@ -132,6 +133,7 @@ public class PostinganHome {
                 posting.setJmlKantung(rs.getInt(7));
                 posting.setKeterangan(rs.getString(8));
                 posting.setUserId(rs.getString(9));
+                posting.setStatus(rs.getString(12));
                 list.add(posting);
             }
 
@@ -161,7 +163,7 @@ public class PostinganHome {
         }
         return sukses;
     }
-    
+
     public boolean deleteTrans(int id) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
         boolean sukses = false;

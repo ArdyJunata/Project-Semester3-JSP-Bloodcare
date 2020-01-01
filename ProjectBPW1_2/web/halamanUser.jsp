@@ -13,6 +13,8 @@
 <%
     String email = user.getEmail();
     ArrayList<Postingan> list = PostinganHome.selectAllSelf(email);
+    ArrayList<Pendonoran> list2 = PendonoranHome.selectAllSelf(email);
+    
 
 %>
 
@@ -23,39 +25,29 @@
             <div class="row">
                 <div class="col s6">
                     <h4 class="white-text center-align">History Pendonoran</h4>
-                    <ul class="collection">
-                        <li class="collection-item avatar">
-                            <i class="material-icons circle teal accent-4">remove</i>
-                            <span class="title">Title</span>
-                            <p>First Line <br>
-                                Second Line
-                            </p>
-                            <a href="#!" class="secondary-content">ditolak</a>
+
+                    <ul class="collapsible collection">
+                        <%                            
+                            for (int i = 0; i < list2.size(); i++) {
+                            list2.get(i);
+                        %>
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">refresh</i>
+                                <span>Donor <%= list2.get(i).getJenis() %> - <%= list2.get(i).getTanggal() %></span>
+                            </div>
+                            <div class="collapsible-body white">
+                                <table>
+                                    <tr>
+                                        <td>Status</td>
+                                        <td>:</td>
+                                        <td><%= list2.get(i).getStatus() %></td>
+                                    </tr>                               
+                                </table><br>
+                                <a href="postinganController?aksi=hapus&id=<%= list.get(i).getId()%>" class="btn teal accent-4 white-text">Batalkan</a>
+                            </div>
                         </li>
-                        <li class="collection-item avatar">
-                            <i class="material-icons circle  teal accent-4">check</i>
-                            <span class="title">Title</span>
-                            <p>First Line <br>
-                                Second Line
-                            </p>
-                            <a href="#!" class="secondary-content">selesai</a>
-                        </li>
-                        <li class="collection-item avatar">
-                            <i class="material-icons circle  teal accent-4">check</i>
-                            <span class="title">Title</span>
-                            <p>First Line <br>
-                                Second Line
-                            </p>
-                            <a href="#!" class="secondary-content">selesai</a>
-                        </li>
-                        <li class="collection-item avatar">
-                            <i class="material-icons circle  teal accent-4">refresh</i>
-                            <span class="title">Title</span>
-                            <p>First Line <br>
-                                Second Line
-                            </p>
-                            <a href="#!" class="secondary-content">proses</a>
-                        </li>
+                        <% } %>
                     </ul>
                 </div>
                 <div class="col s6">
@@ -63,24 +55,24 @@
                     <ul class="collapsible collection">
                         <%
                             for (int i = 0; i < list.size(); i++) {
-                            list.get(i);
+                                list.get(i);
                         %>
                         <li>
                             <div class="collapsible-header">
                                 <i class="material-icons">refresh</i>
-                                <span><%= list.get(i).getNamaPenerima() %></span>
+                                <span><%= list.get(i).getNamaPenerima()%></span>
                             </div>
                             <div class="collapsible-body white">
                                 <table>
                                     <tr>
                                         <td>Nama Penerima</td>
                                         <td>:</td>
-                                        <td><%= list.get(i).getNamaPenerima() %></td>
+                                        <td><%= list.get(i).getNamaPenerima()%></td>
                                     </tr>
                                     <tr>
                                         <td>No Handphone</td>
                                         <td>:</td>
-                                        <td><%= list.get(i).getNoHp() %></td>
+                                        <td><%= list.get(i).getNoHp()%></td>
                                     </tr>
                                     <tr>
                                         <td>Alamat Penerima Darah</td>
@@ -90,28 +82,28 @@
                                     <tr>
                                         <td>Golongan Darah</td>
                                         <td>:</td>
-                                        <td><%= list.get(i).getGoldar() %><%= list.get(i).getRh() %></td>
+                                        <td><%= list.get(i).getGoldar()%><%= list.get(i).getRh()%></td>
                                     </tr>
                                     <tr>
                                         <td>Jumlah Kantong Darah</td>
                                         <td>:</td>
-                                        <td><%= list.get(i).getJmlKantung() %> Kantong Dibutuhkan</td>
+                                        <td><%= list.get(i).getJmlKantung()%> Kantong Dibutuhkan</td>
                                     </tr>
                                     <tr>
                                         <td>Keterangan</td>
                                         <td>:</td>
-                                        <td><%= list.get(i).getKeterangan() %></td>
+                                        <td><%= list.get(i).getKeterangan()%></td>
                                     </tr>                                        
                                     <tr>
                                         <td>Status</td>
                                         <td>:</td>
-                                        <td>menunggu</td>
+                                        <td><%= list.get(i).getStatus()%></td>
                                     </tr>                                        
                                 </table><br>
-                                <a href="postinganController?aksi=hapus&id=<%= list.get(i).getId() %>" class="btn teal accent-4 white-text">Hapus Postingan</a>
+                                <a href="postinganController?aksi=hapus&id=<%= list.get(i).getId()%>" class="btn teal accent-4 white-text">Hapus Postingan</a>
                             </div>
                         </li>
-                        <% } %>
+                        <% }%>
                     </ul>
                 </div>
             </div>

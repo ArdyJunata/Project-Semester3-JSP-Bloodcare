@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.PostinganHome;
+import model.*;
 
 /**
  *
@@ -27,13 +27,28 @@ public class transaksiController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher control = null;
         PostinganHome home = new PostinganHome();
+        TransaksiHome trans = new TransaksiHome();
 
-        int id = PostinganHome.selectLatest();
+        String aksi = request.getParameter("aksi");
 
-        if (home.insertTransaksiPost(id) == true) {
-            control = request.getRequestDispatcher("/halamanUser.jsp");
-        } else {
-            control = request.getRequestDispatcher("/index.jsp");
+        if (aksi.equals("post")) {
+            int id = PostinganHome.selectLatest();
+
+            if (home.insertTransaksiPost(id) == true) {
+                control = request.getRequestDispatcher("/halamanUser.jsp");
+            } else {
+                control = request.getRequestDispatcher("/index.jsp");
+            }
+        } else if (aksi.equals("donor")) {
+            int postId = Integer.parseInt(request.getParameter("postId"));
+            int id = PendonoranHome.selectLatest();
+
+            if (trans.updateTrans(id, postId) == true) {
+                trans.statusUpdate(postId, "direquest");
+                control = request.getRequestDispatcher("/halamanUser.jsp");
+            } else {
+                control = request.getRequestDispatcher("/index.jsp");
+            }
         }
         control.forward(request, response);
     }

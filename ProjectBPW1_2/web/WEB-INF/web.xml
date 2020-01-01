@@ -28,6 +28,10 @@
         <servlet-name>transaksiController</servlet-name>
         <servlet-class>controller.transaksiController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>pendonoranController</servlet-name>
+        <servlet-class>controller.pendonoranController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/UserController</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>transaksiController</servlet-name>
         <url-pattern>/transaksiController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>pendonoranController</servlet-name>
+        <url-pattern>/pendonoranController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

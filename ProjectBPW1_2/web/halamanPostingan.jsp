@@ -38,7 +38,13 @@
                                 </p>
                             </div>
                             <div class="card-action">
-                                <a href="#" class="red-text text-darken-1">Request</a>
+                                <%
+                                    if(list.get(i).getStatus().equals("tersedia")) {
+                                %>
+                                <a href="pendonoranController?jenis=1&email=<%= email %>&id=<%= list.get(i).getId() %>" class="btn red lighten-1 btn-join">Request</a>
+                                <% } else {  %>
+                                <a href="#" class="red-text text-lighten-1"> Status : <%= list.get(i).getStatus() %></a>
+                                <% } %>
                             </div>
                         </div>
                     </div>

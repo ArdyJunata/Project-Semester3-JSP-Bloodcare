@@ -71,7 +71,7 @@ public class postinganController extends HttpServlet {
         posting.setUserId(email);
 
         if (home.insertUser(posting) == true) {
-            control = request.getRequestDispatcher("/transaksiController");
+            control = request.getRequestDispatcher("/transaksiController?aksi=post");
         } else {
             control = request.getRequestDispatcher("/index.jsp");
         }

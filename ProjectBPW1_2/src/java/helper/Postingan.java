@@ -2,8 +2,16 @@ package helper;
 
 public class Postingan {
 
-    String namaPenerima, noHp, alamat, goldar, rh, keterangan, userId;
+    String namaPenerima, noHp, alamat, goldar, rh, keterangan, userId, status;
     int id, jmlKantung;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public int getId() {
         return id;
