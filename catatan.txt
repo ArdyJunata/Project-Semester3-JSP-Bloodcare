@@ -1,0 +1,33 @@
+
+request
+direquest
+selesai
+dibatalkan
+
+select * from postingan, transaksi
+where transaksi.post_id = postingan.id
+postingan.user_id <> 'ardy18ti@mahasiswa.pcr.ac.id'
+
+donor
+-direquest
+-selesai
+-dibatalkan
+
+posting
+-tersedia
+-direquest
+-selesai
+
+select * 
+from pendonoran, transaksi, postingan, user 
+where 
+(case
+	when transaksi.donor_id > 0 then transaksi.donor_id = pendonoran.id
+	else transaksi.id is not null
+end) and 
+transaksi.post_id = postingan.id and 
+pendonoran.user_id = user.email and 
+postingan.user_id = 'ardy18ti@mahasiswa.pcr.ac.id'
+
+terakhir akalin dengan setiap kali create user, akan tebuat sebuah row di transaksi dan
+postingan akan ada 1 baris postingan tes, nantik tampilkan self itu pake except tes tadi

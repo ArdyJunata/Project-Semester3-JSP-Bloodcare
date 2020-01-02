@@ -27,9 +27,10 @@
                     <h4 class="white-text center-align">History Pendonoran</h4>
 
                     <ul class="collapsible collection">
-                        <%                            for (int i = 0; i < list2.size() - 1; i++) {
+                        <%                            
+                                for (int i = 0; i < list2.size(); i++) {    
                                 list2.get(i);
-
+                                
                         %>
                         <li>
                             <div class="collapsible-header">
@@ -61,7 +62,7 @@
                                     <tr>
                                         <td>Golongan Darah</td>
                                         <td>:</td>
-                                        <td><%= list2.get(i).getGoldar()%><%= list.get(i).getRh()%></td>
+                                        <td> <%= list2.get(i).getGoldar()%> <%= list2.get(i).getRh()%></td>
                                     </tr>
                                     <tr>
                                         <td>Jumlah Kantong Darah</td>
@@ -79,7 +80,7 @@
                                         <td><%= list2.get(i).getStatusDonor()%></td>
                                     </tr>   
                                 </table><br>
-                                <a href="postinganController?aksi=hapus&id=<%= list.get(i).getId()%>" class="btn red lighten-1 btn-join">Batalkan</a>
+                                <a href="postinganController?aksi=hapus&id=<%= list2.get(i).getId()%>" class="btn red lighten-1 btn-join">Batalkan</a>
                             </div>
                         </li>
                         <% } %>
@@ -136,14 +137,14 @@
                                     </tr>    
                                     <%
                                         String cekNama = PostinganHome.selectAllSelfRequested(list.get(i).getId());
-                                        if(cekNama != null) {
+                                        if (cekNama != null) {
                                     %>
                                     <tr>
                                         <td>Nama Perequest</td>
                                         <td>:</td>
-                                        <td><%= cekNama %></td>
+                                        <td><%= cekNama%></td>
                                     </tr>    
-                                    <% } %>
+                                    <% }%>
                                 </table><br>
                                 <a href="postinganController?aksi=hapus&id=<%= list.get(i).getId()%>" class="btn red lighten-1 btn-join">Hapus Postingan</a>
                             </div>

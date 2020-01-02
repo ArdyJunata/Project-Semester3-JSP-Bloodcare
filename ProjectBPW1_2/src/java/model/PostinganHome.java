@@ -93,13 +93,13 @@ public class PostinganHome {
         }
         return list;
     }
-    
+
     public static ArrayList<Transaksi> selectAllSelf(String email) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
         ArrayList<Transaksi> list = new ArrayList<>();
 
         try {
-            String query = "select * from transaksi, postingan where transaksi.post_id = postingan.id and postingan.user_id = 'ardy18ti@mahasiswa.pcr.ac.id'";
+            String query = "select * from transaksi, postingan where transaksi.post_id = postingan.id and postingan.user_id = '" + email + "'";
             akses.connect();
 
             ResultSet rs = akses.executeQuery(query);
@@ -125,7 +125,7 @@ public class PostinganHome {
         }
         return list;
     }
-    
+
     public static String selectAllSelfRequested(int transId) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
         String nama = null;
@@ -186,7 +186,7 @@ public class PostinganHome {
         }
         return sukses;
     }
-    
+
     public boolean statusUpdate(int post, String status) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
         boolean sukses = false;
