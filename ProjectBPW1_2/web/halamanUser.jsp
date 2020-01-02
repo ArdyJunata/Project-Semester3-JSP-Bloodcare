@@ -12,9 +12,9 @@
 <%@page import="model.*"%>
 <%
     String email = user.getEmail();
-    ArrayList<Postingan> list = PostinganHome.selectAllSelf(email);
-    ArrayList<Pendonoran> list2 = PendonoranHome.selectAllSelf(email);
-    
+    ArrayList<Transaksi> list = PostinganHome.selectAllSelf(email);
+    ArrayList<Transaksi> list2 = PendonoranHome.selectAllSelf(email);
+
 
 %>
 
@@ -28,20 +28,56 @@
 
                     <ul class="collapsible collection">
                         <%                            
-                            for (int i = 0; i < list2.size(); i++) {
-                            list2.get(i);
+                                for (int i = 0; i < list2.size() - 1; i++) {
+                                list2.get(i);
+                                
                         %>
                         <li>
                             <div class="collapsible-header">
                                 <i class="material-icons">refresh</i>
-                                <span>Donor <%= list2.get(i).getJenis() %> - <%= list2.get(i).getTanggal() %></span>
+                                <span>Donor <%= list2.get(i).getJenis()%> - <%= list2.get(i).getTanggal()%></span>
                             </div>
                             <div class="collapsible-body white">
                                 <table>
                                     <tr>
+                                        <td>Pemosting</td>
+                                        <td>:</td>
+                                        <td><%= list2.get(i).getNamaUser() %></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nama Penerima</td>
+                                        <td>:</td>
+                                        <td><%= list2.get(i).getNamaPenerima()%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>No Handphone</td>
+                                        <td>:</td>
+                                        <td><%= list2.get(i).getNoHp()%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alamat Penerima Darah</td>
+                                        <td>:</td>
+                                        <td> <%= list2.get(i).getAlamat()%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Golongan Darah</td>
+                                        <td>:</td>
+                                        <td><%= list2.get(i).getGoldar()%><%= list.get(i).getRh()%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jumlah Kantong Darah</td>
+                                        <td>:</td>
+                                        <td><%= list2.get(i).getJmlKantung()%> Kantong Dibutuhkan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Keterangan</td>
+                                        <td>:</td>
+                                        <td><%= list2.get(i).getKeterangan()%></td>
+                                    </tr>                                   
+                                    <tr>
                                         <td>Status</td>
                                         <td>:</td>
-                                        <td><%= list2.get(i).getStatus() %></td>
+                                        <td><%= list2.get(i).getStatusDonor()%></td>
                                     </tr>                               
                                 </table><br>
                                 <a href="postinganController?aksi=hapus&id=<%= list.get(i).getId()%>" class="btn teal accent-4 white-text">Batalkan</a>
@@ -97,8 +133,15 @@
                                     <tr>
                                         <td>Status</td>
                                         <td>:</td>
-                                        <td><%= list.get(i).getStatus()%></td>
-                                    </tr>                                        
+                                        <td><%= list.get(i).getStatusPost()%></td>
+                                    </tr>    
+                                    <% if(list.get(i).getNamaUser() != null){ %>
+                                    <tr>
+                                        <td>Pendonor</td>
+                                        <td>:</td>
+                                        <td><%= list.get(i).getNamaUser()%></td>
+                                    </tr>             
+                                    <% } %>
                                 </table><br>
                                 <a href="postinganController?aksi=hapus&id=<%= list.get(i).getId()%>" class="btn teal accent-4 white-text">Hapus Postingan</a>
                             </div>

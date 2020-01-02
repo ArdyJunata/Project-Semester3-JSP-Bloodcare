@@ -23,15 +23,22 @@ public class pendonoranController extends HttpServlet {
 
         int jenis = Integer.parseInt(request.getParameter("jenis"));
         String email = request.getParameter("email");
-        int postId = Integer.parseInt(request.getParameter("id"));
+        int postId = Integer.parseInt(request.getParameter("idPost"));
+        String jenisName = "";
+//        int donorId = Integer.parseInt(request.getParameter("idDonor"));
+        if (jenis == 1) {
+            jenisName = "biasa";
+        } else if (jenis == 2) {
+            jenisName = "rutin";
+        }
 
-        donor.setJenisId(jenis);
+        donor.setJenis(jenisName);
         donor.setUserId(email);
 
         if (donorHome.insertDonor(donor) == true) {
             control = request.getRequestDispatcher("/transaksiController?aksi=donor&postId=" + postId);
         } else {
-            control = request.getRequestDispatcher("/halamanPostingan.jsp");
+            control = request.getRequestDispatcher("/index.jsp");
         }
         control.forward(request, response);
 

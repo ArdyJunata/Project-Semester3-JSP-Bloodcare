@@ -27,6 +27,7 @@ public class transaksiController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher control = null;
         PostinganHome home = new PostinganHome();
+        PendonoranHome donorHome = new PendonoranHome();
         TransaksiHome trans = new TransaksiHome();
 
         String aksi = request.getParameter("aksi");
@@ -34,7 +35,7 @@ public class transaksiController extends HttpServlet {
         if (aksi.equals("post")) {
             int id = PostinganHome.selectLatest();
 
-            if (home.insertTransaksiPost(id) == true) {
+            if (trans.insertTransaksiPost(id) == true) {
                 control = request.getRequestDispatcher("/halamanUser.jsp");
             } else {
                 control = request.getRequestDispatcher("/index.jsp");
@@ -44,7 +45,7 @@ public class transaksiController extends HttpServlet {
             int id = PendonoranHome.selectLatest();
 
             if (trans.updateTrans(id, postId) == true) {
-                trans.statusUpdate(postId, "direquest");
+                home.statusUpdate(postId, "direquest");
                 control = request.getRequestDispatcher("/halamanUser.jsp");
             } else {
                 control = request.getRequestDispatcher("/index.jsp");

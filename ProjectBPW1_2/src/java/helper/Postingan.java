@@ -3,7 +3,15 @@ package helper;
 public class Postingan {
 
     String namaPenerima, noHp, alamat, goldar, rh, keterangan, userId, status;
-    int id, jmlKantung;
+    int id, jmlKantung, idDonor;
+
+    public int getIdDonor() {
+        return idDonor;
+    }
+
+    public void setIdDonor(int idDonor) {
+        this.idDonor = idDonor;
+    }
 
     public String getStatus() {
         return status;

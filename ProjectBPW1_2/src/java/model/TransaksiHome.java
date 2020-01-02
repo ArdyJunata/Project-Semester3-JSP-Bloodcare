@@ -1,10 +1,34 @@
 package model;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TransaksiHome {
+
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+    LocalDateTime now = LocalDateTime.now();
+
+    public boolean insertTransaksiPost(int id) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+
+        try {
+            String insert = "insert into transaksi (tanggal_transaksi, post_id, donor_id) values ("
+                    + "'" + dtf.format(now) + "',"
+                    + "" + id + ","
+                    + "0)";
+            akses.connect();
+            akses.executeUpdate(insert);
+            akses.disconnect();
+
+            return true;
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(UserHome.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 
     public boolean updateTrans(int id, int post) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();

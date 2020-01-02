@@ -14,7 +14,7 @@ public class PendonoranHome {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
 
         try {
-            String insert = "insert into pendonoran (jenis_id, user_id) values (" + donor.getJenisId() + ", '" + donor.getUserId() + "')";
+            String insert = "insert into pendonoran (jenis_id, user_id, status) values ('" + donor.getJenis() + "', '" + donor.getUserId() + "', 'direquest')";
             akses.connect();
             akses.executeUpdate(insert);
             akses.disconnect();
@@ -26,26 +26,35 @@ public class PendonoranHome {
         }
     }
 
-    public static ArrayList<Pendonoran> selectAllSelf(String email) {
+    public static ArrayList<Transaksi> selectAllSelf(String email) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
-        ArrayList<Pendonoran> list = new ArrayList<>();
+        ArrayList<Transaksi> list = new ArrayList<>();
 
         try {
-            String query = "select * from pendonoran, transaksi, jenis_donor where pendonoran.jenis_id = jenis_donor.id and \n"
-                    + "transaksi.donor_id = pendonoran.id and pendonoran.user_id = '" + email + "'";
+            String query = "select * from pendonoran, transaksi, postingan, user "
+                    + "where transaksi.donor_id = pendonoran.id and "
+                    + "transaksi.post_id = postingan.id and "
+                    + "postingan.user_id = user.email and "
+                    + "pendonoran.user_id = '" + email + "'";
             akses.connect();
 
             ResultSet rs = akses.executeQuery(query);
 
             while (rs.next()) {
-                Pendonoran donor = new Pendonoran();
-                donor.setId(rs.getInt(1));
-                donor.setJenisId(rs.getInt(2));
-                donor.setUserId(rs.getString(3));
-                donor.setTanggal(rs.getString(5));
-                donor.setStatus(rs.getString(6));
-                donor.setJenis(rs.getString(10));
-                list.add(donor);
+                Transaksi trans = new Transaksi();
+                trans.setId(rs.getInt(5));
+                trans.setJenis(rs.getString(2));
+                trans.setTanggal(rs.getString(6));
+                trans.setNamaPenerima(rs.getString(10));
+                trans.setGoldar(rs.getString(13));
+                trans.setRh(rs.getString(14));
+                trans.setNamaUser(rs.getString(20));
+                trans.setStatusDonor(rs.getString(4));
+                trans.setNoHp(rs.getString(11));
+                trans.setAlamat(rs.getString(12));
+                trans.setJmlKantung(rs.getInt(15));
+                trans.setKeterangan(rs.getString(16));
+                list.add(trans);
             }
 
             akses.disconnect();
@@ -74,5 +83,25 @@ public class PendonoranHome {
             Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
+    }
+
+    public boolean statusUpdate(int donor, String status) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+        boolean sukses = false;
+
+        try {
+            String delete = "update pendonoran set status = '" + status + "' where id = " + donor + "";
+            akses.connect();
+
+            int baris = akses.executeUpdate(delete);
+            if (baris > 0) {
+                sukses = true;
+            }
+            akses.disconnect();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sukses;
     }
 }

@@ -41,7 +41,7 @@
                                 <%
                                     if(list.get(i).getStatus().equals("tersedia")) {
                                 %>
-                                <a href="pendonoranController?jenis=1&email=<%= email %>&id=<%= list.get(i).getId() %>" class="btn red lighten-1 btn-join">Request</a>
+                                <a href="pendonoranController?jenis=1&email=<%= email %>&idPost=<%= list.get(i).getId() %>" class="btn red lighten-1 btn-join">Request</a>
                                 <% } else {  %>
                                 <a href="#" class="red-text text-lighten-1"> Status : <%= list.get(i).getStatus() %></a>
                                 <% } %>
