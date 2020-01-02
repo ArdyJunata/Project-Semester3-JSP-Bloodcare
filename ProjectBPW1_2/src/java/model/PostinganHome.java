@@ -28,7 +28,7 @@ public class PostinganHome {
                     + "" + posting.getJmlKantung() + ","
                     + "'" + posting.getKeterangan() + "',"
                     + "'" + posting.getUserId() + "',"
-                    + "'tersedia')";
+                    + "'menunggu')";
             akses.connect();
             akses.executeUpdate(insert);
             akses.disconnect();
@@ -99,29 +99,23 @@ public class PostinganHome {
         ArrayList<Transaksi> list = new ArrayList<>();
 
         try {
-            String query = "select * from pendonoran, transaksi, postingan, user "
-                    + "where transaksi.donor_id = pendonoran.id and "
-                    + "transaksi.post_id = postingan.id and "
-                    + "pendonoran.user_id = user.email and "
-                    + "postingan.user_id = '" + email + "'";
+            String query = "select * from transaksi, postingan where transaksi.post_id = postingan.id and postingan.user_id = 'ardy18ti@mahasiswa.pcr.ac.id'";
             akses.connect();
 
             ResultSet rs = akses.executeQuery(query);
 
             while (rs.next()) {
                 Transaksi trans = new Transaksi();
-                trans.setId(rs.getInt(5));
-                trans.setJenis(rs.getString(2));
-                trans.setTanggal(rs.getString(6));
-                trans.setNamaPenerima(rs.getString(10));
-                trans.setGoldar(rs.getString(13));
-                trans.setRh(rs.getString(14));
-                trans.setNamaUser(rs.getString(20));
-                trans.setNoHp(rs.getString(11));
-                trans.setAlamat(rs.getString(12));
-                trans.setJmlKantung(rs.getInt(15));
-                trans.setKeterangan(rs.getString(16));
-                trans.setStatusPost(rs.getString(18));
+                trans.setId(rs.getInt(1));
+                trans.setTanggal(rs.getString(2));
+                trans.setNamaPenerima(rs.getString(6));
+                trans.setGoldar(rs.getString(9));
+                trans.setRh(rs.getString(10));
+                trans.setStatusPost(rs.getString(14));
+                trans.setNoHp(rs.getString(7));
+                trans.setAlamat(rs.getString(8));
+                trans.setJmlKantung(rs.getInt(11));
+                trans.setKeterangan(rs.getString(12));
                 list.add(trans);
             }
 
@@ -130,6 +124,27 @@ public class PostinganHome {
             Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+    
+    public static String selectAllSelfRequested(int transId) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+        String nama = null;
+
+        try {
+            String query = "select * from pendonoran, transaksi, user where transaksi.donor_id = pendonoran.id and pendonoran.user_id = user.email and transaksi.id = " + transId;
+            akses.connect();
+
+            ResultSet rs = akses.executeQuery(query);
+
+            while (rs.next()) {
+                nama = rs.getString(10);
+            }
+
+            akses.disconnect();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nama;
     }
 
     public boolean deletePost(int id) {

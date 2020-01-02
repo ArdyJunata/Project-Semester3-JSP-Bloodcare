@@ -27,10 +27,9 @@
                     <h4 class="white-text center-align">History Pendonoran</h4>
 
                     <ul class="collapsible collection">
-                        <%                            
-                                for (int i = 0; i < list2.size() - 1; i++) {
+                        <%                            for (int i = 0; i < list2.size() - 1; i++) {
                                 list2.get(i);
-                                
+
                         %>
                         <li>
                             <div class="collapsible-header">
@@ -42,7 +41,7 @@
                                     <tr>
                                         <td>Pemosting</td>
                                         <td>:</td>
-                                        <td><%= list2.get(i).getNamaUser() %></td>
+                                        <td><%= list2.get(i).getNamaUser()%></td>
                                     </tr>
                                     <tr>
                                         <td>Nama Penerima</td>
@@ -78,9 +77,9 @@
                                         <td>Status</td>
                                         <td>:</td>
                                         <td><%= list2.get(i).getStatusDonor()%></td>
-                                    </tr>                               
+                                    </tr>   
                                 </table><br>
-                                <a href="postinganController?aksi=hapus&id=<%= list.get(i).getId()%>" class="btn teal accent-4 white-text">Batalkan</a>
+                                <a href="postinganController?aksi=hapus&id=<%= list.get(i).getId()%>" class="btn red lighten-1 btn-join">Batalkan</a>
                             </div>
                         </li>
                         <% } %>
@@ -135,15 +134,18 @@
                                         <td>:</td>
                                         <td><%= list.get(i).getStatusPost()%></td>
                                     </tr>    
-                                    <% if(list.get(i).getNamaUser() != null){ %>
+                                    <%
+                                        String cekNama = PostinganHome.selectAllSelfRequested(list.get(i).getId());
+                                        if(cekNama != null) {
+                                    %>
                                     <tr>
-                                        <td>Pendonor</td>
+                                        <td>Nama Perequest</td>
                                         <td>:</td>
-                                        <td><%= list.get(i).getNamaUser()%></td>
-                                    </tr>             
+                                        <td><%= cekNama %></td>
+                                    </tr>    
                                     <% } %>
                                 </table><br>
-                                <a href="postinganController?aksi=hapus&id=<%= list.get(i).getId()%>" class="btn teal accent-4 white-text">Hapus Postingan</a>
+                                <a href="postinganController?aksi=hapus&id=<%= list.get(i).getId()%>" class="btn red lighten-1 btn-join">Hapus Postingan</a>
                             </div>
                         </li>
                         <% }%>
