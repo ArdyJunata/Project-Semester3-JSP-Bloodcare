@@ -27,10 +27,9 @@
                     <h4 class="white-text center-align">History Pendonoran</h4>
 
                     <ul class="collapsible collection">
-                        <%                            
-                                for (int i = 0; i < list2.size(); i++) {    
+                        <%                            for (int i = 0; i < list2.size(); i++) {
                                 list2.get(i);
-                                
+
                         %>
                         <li>
                             <div class="collapsible-header">
@@ -80,7 +79,7 @@
                                         <td><%= list2.get(i).getStatusDonor()%></td>
                                     </tr>   
                                 </table><br>
-                                <a href="postinganController?aksi=hapus&id=<%= list2.get(i).getId()%>" class="btn red lighten-1 btn-join">Batalkan</a>
+                                <a href="pendonoranController?aksi=update&donorId=<%= list2.get(i).getDonorId()%>&postId=<%= list2.get(i).getPostId()%>" class="btn red lighten-1 btn-join">Batalkan</a>
                             </div>
                         </li>
                         <% } %>
@@ -133,7 +132,14 @@
                                     <tr>
                                         <td>Status</td>
                                         <td>:</td>
-                                        <td><%= list.get(i).getStatusPost()%></td>
+                                        <td><%= list.get(i).getStatusPost()%> 
+                                            <%
+                                                if (list.get(i).getStatusPost().equals("dibatalkan")) {
+                                            %>
+                                            <a href="postinganController?aksi=update&status=tersedia&postId=<%= list.get(i).getId()%>" class="btn white btn-login" style="margin-left: 20px">Post Kembali ?
+                                            </a>
+                                            <% } %>
+                                        </td>
                                     </tr>    
                                     <%
                                         String cekNama = PostinganHome.selectAllSelfRequested(list.get(i).getId());

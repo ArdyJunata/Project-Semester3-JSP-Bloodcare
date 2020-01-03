@@ -29,8 +29,8 @@ public class postinganController extends HttpServlet {
         String cek = request.getParameter("aksi");
         RequestDispatcher control = null;
         PostinganHome home = new PostinganHome();
-        int id = Integer.parseInt(request.getParameter("id"));
         if (cek.equals("hapus")) {
+            int id = Integer.parseInt(request.getParameter("id"));
             if (home.deletePost(id) == true) {
                 home.deleteTrans(id);
                 control = request.getRequestDispatcher("/halamanUser.jsp");
@@ -38,8 +38,17 @@ public class postinganController extends HttpServlet {
                 control = request.getRequestDispatcher("/halamanUser.jsp");
                 System.out.println("gagal");
             }
-            control.forward(request, response);
+        } else if (cek.equals("update")) {
+            int postId = Integer.parseInt(request.getParameter("postId"));
+            String status = request.getParameter("status");
+            if (home.statusUpdate(postId, status) == true) {
+                control = request.getRequestDispatcher("/halamanUser.jsp");
+            } else {
+                control = request.getRequestDispatcher("/halamanUser.jsp");
+                System.out.println("gagal");
+            }
         }
+        control.forward(request, response);
     }
 
     @Override

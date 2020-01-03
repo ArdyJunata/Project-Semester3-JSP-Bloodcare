@@ -20,25 +20,33 @@ public class pendonoranController extends HttpServlet {
 
         Pendonoran donor = new Pendonoran();
         PendonoranHome donorHome = new PendonoranHome();
-
-        int jenis = Integer.parseInt(request.getParameter("jenis"));
-        String email = request.getParameter("email");
-        int postId = Integer.parseInt(request.getParameter("idPost"));
-        String jenisName = "";
+        String aksi = request.getParameter("aksi");
+        if (aksi.equals("insert")) {
+            int jenis = Integer.parseInt(request.getParameter("jenis"));
+            String email = request.getParameter("email");
+            int postId = Integer.parseInt(request.getParameter("idPost"));
+            String jenisName = "";
 //        int donorId = Integer.parseInt(request.getParameter("idDonor"));
-        if (jenis == 1) {
-            jenisName = "biasa";
-        } else if (jenis == 2) {
-            jenisName = "rutin";
-        }
+            if (jenis == 1) {
+                jenisName = "biasa";
+            } else if (jenis == 2) {
+                jenisName = "rutin";
+            }
 
-        donor.setJenis(jenisName);
-        donor.setUserId(email);
+            donor.setJenis(jenisName);
+            donor.setUserId(email);
 
-        if (donorHome.insertDonor(donor) == true) {
-            control = request.getRequestDispatcher("/transaksiController?aksi=donor&postId=" + postId);
-        } else {
-            control = request.getRequestDispatcher("/index.jsp");
+            if (donorHome.insertDonor(donor) == true) {
+                control = request.getRequestDispatcher("/transaksiController?aksi=donor&postId=" + postId);
+            } else {
+                control = request.getRequestDispatcher("/index.jsp");
+            }
+        } else if (aksi.equals("update")) {
+            int donorId = Integer.parseInt(request.getParameter("donorId"));
+            int postId = Integer.parseInt(request.getParameter("postId"));
+            if (donorHome.statusUpdate(donorId, "dibatalkan") == true) {
+                control = request.getRequestDispatcher("/postinganController?aksi=update&status=dibatalkan&postId=" + postId);
+            }
         }
         control.forward(request, response);
 

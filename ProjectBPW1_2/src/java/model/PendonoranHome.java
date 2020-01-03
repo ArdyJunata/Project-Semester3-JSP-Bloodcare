@@ -54,6 +54,8 @@ public class PendonoranHome {
                 trans.setAlamat(rs.getString(12));
                 trans.setJmlKantung(rs.getInt(15));
                 trans.setKeterangan(rs.getString(16));
+                trans.setDonorId(rs.getInt(1));
+                trans.setPostId(rs.getInt(9));
                 list.add(trans);
             }
 
