@@ -44,7 +44,7 @@
                                         <td><%= list2.get(i).getStatusDonor()%></td>
                                     </tr>
                                 </table><br>
-                                <a href="pendonoranController?aksi=update&donorId=<%= list2.get(i).getDonorId()%>&postId=<%= list2.get(i).getPostId()%>" class="btn red lighten-1 btn-join">Batalkan</a>
+                                <a href="pendonoranController?aksi=hapus&donorId=<%= list2.get(i).getDonorId() %>" class="btn red lighten-1 btn-join">Batalkan</a>
                             </div>
                         </li>
                         <% } else {

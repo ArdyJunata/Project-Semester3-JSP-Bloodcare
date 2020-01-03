@@ -47,6 +47,11 @@ public class pendonoranController extends HttpServlet {
             if (donorHome.statusUpdate(donorId, "dibatalkan") == true) {
                 control = request.getRequestDispatcher("/postinganController?aksi=update&status=dibatalkan&postId=" + postId);
             }
+        } else if (aksi.equals("hapus")) {
+            int donorId = Integer.parseInt(request.getParameter("donorId"));
+            if (donorHome.deleteTrans(donorId) == true) {
+                control = request.getRequestDispatcher("/transaksiController?aksi=hapus&donorId=" + donorId);
+            }
         }
         control.forward(request, response);
 

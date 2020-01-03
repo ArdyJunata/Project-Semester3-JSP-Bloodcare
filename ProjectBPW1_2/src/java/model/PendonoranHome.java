@@ -58,6 +58,7 @@ public class PendonoranHome {
                 trans.setJenis(rs.getString(6));
                 trans.setTanggal(rs.getString(2));
                 trans.setPostId(rs.getInt(3));
+                trans.setDonorId(rs.getInt(4));
                 trans.setStatusDonor(rs.getString(8));
                 list.add(trans);
             }
@@ -127,12 +128,54 @@ public class PendonoranHome {
         return id;
     }
 
+    public static String selectRutin(String email) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+        String jenis = null;
+
+        try {
+            String query = "SELECT jenis_id FROM pendonoran where user_id = '" + email + "' and jenis_id = 'rutin'";
+            akses.connect();
+
+            ResultSet rs = akses.executeQuery(query);
+
+            while (rs.next()) {
+                jenis = rs.getString(1);
+
+            }
+
+            akses.disconnect();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return jenis;
+    }
+
     public boolean statusUpdate(int donor, String status) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
         boolean sukses = false;
 
         try {
             String delete = "update pendonoran set status = '" + status + "' where id = " + donor + "";
+            akses.connect();
+
+            int baris = akses.executeUpdate(delete);
+            if (baris > 0) {
+                sukses = true;
+            }
+            akses.disconnect();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sukses;
+    }
+
+    public boolean deleteTrans(int id) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+        boolean sukses = false;
+
+        try {
+            String delete = "delete from pendonoran where id = " + id + "";
             akses.connect();
 
             int baris = akses.executeUpdate(delete);

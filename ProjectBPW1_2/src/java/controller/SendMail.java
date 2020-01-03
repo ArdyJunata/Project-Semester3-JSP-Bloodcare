@@ -54,35 +54,45 @@ public class SendMail extends HttpServlet {
             }
         });
 
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(email));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-            MimeBodyPart textPart = new MimeBodyPart();
-            Multipart multipart = new MimeMultipart();
-            String final_text = mag;
-            textPart.setText(final_text);
-            message.setSubject(subject);
-            multipart.addBodyPart(textPart);
-            message.setContent(multipart);
-            message.setSubject("Donor Darah Rutin BloodCare");
-            Transport.send(message);
+        PendonoranHome home = new PendonoranHome();
+        TransaksiHome trans = new TransaksiHome();
+        Pendonoran donor = new Pendonoran();
+        RequestDispatcher control = null;
+        String jenis = home.selectRutin(email);
+        if (jenis != null) {
+            control = request.getRequestDispatcher("/gagalRutin.jsp");
+            control.forward(request, response);
+        } else if (jenis == null) {
+            try {
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(email));
+                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+                MimeBodyPart textPart = new MimeBodyPart();
+                Multipart multipart = new MimeMultipart();
+                String final_text = mag;
+                textPart.setText(final_text);
+                message.setSubject(subject);
+                multipart.addBodyPart(textPart);
+                message.setContent(multipart);
+                message.setSubject("Donor Darah Rutin BloodCare");
+                Transport.send(message);
 
-            RequestDispatcher control = null;
+                
 
-            PendonoranHome home = new PendonoranHome();
-            TransaksiHome trans = new TransaksiHome();
-            Pendonoran donor = new Pendonoran();
-            donor.setJenis("rutin");
-            donor.setUserId(email);
-            if (home.insertDonorRutin(donor) == true) {
-                control = request.getRequestDispatcher("/transaksiController?aksi=rutin");
-                control.forward(request, response);
+                donor.setJenis("rutin");
+                donor.setUserId(email);
+                if (home.insertDonorRutin(donor) == true) {
+                    control = request.getRequestDispatcher("/transaksiController?aksi=rutin");
+                    control.forward(request, response);
+                }
+
+            } catch (Exception ex) {
+                out.println(ex);
             }
-
-        } catch (Exception ex) {
-            out.println(ex);
+        } else {
+            System.out.println("gagal");
         }
+
     }
 
 }

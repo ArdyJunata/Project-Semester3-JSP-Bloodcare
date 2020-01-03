@@ -88,5 +88,25 @@ public class TransaksiHome {
         }
         return sukses;
     }
+    
+    public boolean deleteTrans(int id) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+        boolean sukses = false;
+
+        try {
+            String delete = "delete from transaksi where donor_id = " + id + "";
+            akses.connect();
+
+            int baris = akses.executeUpdate(delete);
+            if (baris > 0) {
+                sukses = true;
+            }
+            akses.disconnect();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sukses;
+    }
 
 }

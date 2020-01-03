@@ -1,0 +1,36 @@
+SMAP
+gagalRutin_jsp.java
+JSP
+*S JSP
+*F
++ 0 gagalRutin.jsp
+gagalRutin.jsp
++ 1 header.jsp
+templates/header.jsp
++ 2 navbar.jsp
+templates/navbar.jsp
++ 3 modalSyaratDonor.jsp
+templates/modalSyaratDonor.jsp
++ 4 footer.jsp
+templates/footer.jsp
+*L
+5,5:55
+5#1,18:59
+9#0:76
+5#2,6:77
+12,22:84
+33,13:106
+46:119,3
+47,2:122
+49:124,3
+50,4:127
+54:131,3
+55,2:134
+57:136,3
+58,20:139
+10#0,3:159
+5#3,29:161
+12#0:189
+5#4,9:190
+13#0:198
+*E

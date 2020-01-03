@@ -50,10 +50,18 @@ public class transaksiController extends HttpServlet {
             } else {
                 control = request.getRequestDispatcher("/index.jsp");
             }
-        } else if(aksi.equals("rutin")) {
+        } else if (aksi.equals("rutin")) {
             int id = PendonoranHome.selectLatest();
 
             if (trans.insertTransaksiDonor(id) == true) {
+                control = request.getRequestDispatcher("/halamanUser.jsp");
+            } else {
+                control = request.getRequestDispatcher("/index.jsp");
+            }
+        } else if (aksi.equals("hapus")) {
+            int donorId = Integer.parseInt(request.getParameter("donorId"));
+
+            if (trans.deleteTrans(donorId) == true) {
                 control = request.getRequestDispatcher("/halamanUser.jsp");
             } else {
                 control = request.getRequestDispatcher("/index.jsp");
