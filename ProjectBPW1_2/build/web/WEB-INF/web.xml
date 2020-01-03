@@ -32,6 +32,10 @@
         <servlet-name>pendonoranController</servlet-name>
         <servlet-class>controller.pendonoranController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SendMail</servlet-name>
+        <servlet-class>controller.SendMail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/UserController</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>pendonoranController</servlet-name>
         <url-pattern>/pendonoranController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendMail</servlet-name>
+        <url-pattern>/SendMail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

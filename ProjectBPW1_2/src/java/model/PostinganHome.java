@@ -109,6 +109,7 @@ public class PostinganHome {
                 trans.setId(rs.getInt(1));
                 trans.setTanggal(rs.getString(2));
                 trans.setNamaPenerima(rs.getString(6));
+                trans.setPostId(rs.getInt(3));
                 trans.setGoldar(rs.getString(9));
                 trans.setRh(rs.getString(10));
                 trans.setStatusPost(rs.getString(14));

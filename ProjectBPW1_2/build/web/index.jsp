@@ -47,7 +47,7 @@
     <div class="container center-align">
         <h3>DONOR DARAH RUTIN</h3>
         <p>donor darah rutin untuk menjaga kesehatan dan kebugaran tubuh anda</p>
-        <a href="daftar.jsp" class="waves-effect red lighten-1 btn-large btn-join">Donor Rutin</a>
+        <button class="waves-effect red lighten-1 btn-large btn-join modal-trigger" data-target="rutin">Cari Pendonor</button>
     </div>
 </div>
 <% } %>
@@ -71,6 +71,11 @@
         const box = document.querySelectorAll("#syarat");
         M.Modal.init(box, {});
     });
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        const box = document.querySelectorAll("#rutin");
+        M.Modal.init(box, {});
+    });
 
     document.addEventListener("DOMContentLoaded", function () {
         const box = document.querySelectorAll("select");
@@ -81,6 +86,14 @@
 
 <%@include file="templates/modalPencarianDarah.jsp" %>
             <input type="hidden" name="email" value="<%=email%>">
+        </form>
+    </div>
+</div>
+<%@include file="templates/modalDonorRutin.jsp" %>
+                <input type="hidden" name="email" value="<%=email%>">
+                <input type="hidden" name="nama" value="<%=nama%>">
+                
+            <button class="btn waves-effect waves-ligh modal-closet btn-join red lighten-1 modal-close" type="submit" name="action">ya</button>
         </form>
     </div>
 </div>

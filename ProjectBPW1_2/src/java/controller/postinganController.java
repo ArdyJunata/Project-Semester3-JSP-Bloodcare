@@ -44,7 +44,7 @@ public class postinganController extends HttpServlet {
             if (home.statusUpdate(postId, status) == true) {
                 control = request.getRequestDispatcher("/halamanUser.jsp");
             } else {
-                control = request.getRequestDispatcher("/halamanUser.jsp");
+                control = request.getRequestDispatcher("/index.jsp");
                 System.out.println("gagal");
             }
         }

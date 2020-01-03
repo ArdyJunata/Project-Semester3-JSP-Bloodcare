@@ -30,6 +30,25 @@ public class TransaksiHome {
         }
     }
 
+    public boolean insertTransaksiDonor(int id) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+
+        try {
+            String insert = "insert into transaksi (tanggal_transaksi, post_id, donor_id) values ("
+                    + "'" + dtf.format(now) + "',"
+                    + "0,"
+                    + "" + id + ")";
+            akses.connect();
+            akses.executeUpdate(insert);
+            akses.disconnect();
+
+            return true;
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(UserHome.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
     public boolean updateTrans(int id, int post) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
         boolean sukses = false;

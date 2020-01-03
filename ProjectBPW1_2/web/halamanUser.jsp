@@ -29,7 +29,7 @@
                     <ul class="collapsible collection">
                         <%                            for (int i = 0; i < list2.size(); i++) {
                                 list2.get(i);
-
+                                if (list2.get(i).getPostId() == 0) {
                         %>
                         <li>
                             <div class="collapsible-header">
@@ -39,50 +39,70 @@
                             <div class="collapsible-body white">
                                 <table>
                                     <tr>
-                                        <td>Pemosting</td>
-                                        <td>:</td>
-                                        <td><%= list2.get(i).getNamaUser()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nama Penerima</td>
-                                        <td>:</td>
-                                        <td><%= list2.get(i).getNamaPenerima()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>No Handphone</td>
-                                        <td>:</td>
-                                        <td><%= list2.get(i).getNoHp()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Alamat Penerima Darah</td>
-                                        <td>:</td>
-                                        <td> <%= list2.get(i).getAlamat()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Golongan Darah</td>
-                                        <td>:</td>
-                                        <td> <%= list2.get(i).getGoldar()%> <%= list2.get(i).getRh()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jumlah Kantong Darah</td>
-                                        <td>:</td>
-                                        <td><%= list2.get(i).getJmlKantung()%> Kantong Dibutuhkan</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Keterangan</td>
-                                        <td>:</td>
-                                        <td><%= list2.get(i).getKeterangan()%></td>
-                                    </tr>                                   
-                                    <tr>
                                         <td>Status</td>
                                         <td>:</td>
                                         <td><%= list2.get(i).getStatusDonor()%></td>
-                                    </tr>   
+                                    </tr>
                                 </table><br>
                                 <a href="pendonoranController?aksi=update&donorId=<%= list2.get(i).getDonorId()%>&postId=<%= list2.get(i).getPostId()%>" class="btn red lighten-1 btn-join">Batalkan</a>
                             </div>
                         </li>
-                        <% } %>
+                        <% } else {
+                            Transaksi biasa = PendonoranHome.selectAllBiasa(list2.get(i).getId());
+                        %>
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">refresh</i>
+                                <span>Donor <%= biasa.getJenis()%> - <%= biasa.getTanggal()%></span>
+                            </div>
+                            <div class="collapsible-body white">
+                                <table>
+                                    <tr>
+                                        <td>Pemosting</td>
+                                        <td>:</td>
+                                        <td><%= biasa.getNamaUser()%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nama Penerima</td>
+                                        <td>:</td>
+                                        <td><%= biasa.getNamaPenerima()%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>No Handphone</td>
+                                        <td>:</td>
+                                        <td><%= biasa.getNoHp()%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alamat Penerima Darah</td>
+                                        <td>:</td>
+                                        <td> <%= biasa.getAlamat()%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Golongan Darah</td>
+                                        <td>:</td>
+                                        <td> <%= biasa.getGoldar()%> <%= biasa.getRh()%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jumlah Kantong Darah</td>
+                                        <td>:</td>
+                                        <td><%= biasa.getJmlKantung()%> Kantong Dibutuhkan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Keterangan</td>
+                                        <td>:</td>
+                                        <td><%= biasa.getKeterangan()%></td>
+                                    </tr>                                   
+                                    <tr>
+                                        <td>Status</td>
+                                        <td>:</td>
+                                        <td><%= biasa.getStatusDonor()%></td>
+                                    </tr>   
+                                </table><br>
+                                <a href="pendonoranController?aksi=update&donorId=<%= biasa.getDonorId()%>&postId=<%= biasa.getPostId()%>" class="btn red lighten-1 btn-join">Batalkan</a>
+                            </div>
+                        </li>
+                        <% }
+                            } %>
                     </ul>
                 </div>
                 <div class="col s6">
@@ -136,7 +156,7 @@
                                             <%
                                                 if (list.get(i).getStatusPost().equals("dibatalkan")) {
                                             %>
-                                            <a href="postinganController?aksi=update&status=tersedia&postId=<%= list.get(i).getId()%>" class="btn white btn-login" style="margin-left: 20px">Post Kembali ?
+                                            <a href="postinganController?aksi=update&status=tersedia&postId=<%= list.get(i).getPostId() %>" class="btn white btn-login" style="margin-left: 20px">Post Kembali ?
                                             </a>
                                             <% } %>
                                         </td>

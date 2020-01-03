@@ -26,22 +26,63 @@ public class PendonoranHome {
         }
     }
 
+    public boolean insertDonorRutin(Pendonoran donor) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+
+        try {
+            String insert = "insert into pendonoran (jenis_id, user_id, status) values ('" + donor.getJenis() + "', '" + donor.getUserId() + "', 'menjalani')";
+            akses.connect();
+            akses.executeUpdate(insert);
+            akses.disconnect();
+
+            return true;
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(UserHome.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
     public static ArrayList<Transaksi> selectAllSelf(String email) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
         ArrayList<Transaksi> list = new ArrayList<>();
 
         try {
-            String query = "select * from pendonoran, transaksi, postingan, user "
-                    + "where transaksi.donor_id = pendonoran.id and "
-                    + "transaksi.post_id = postingan.id and "
-                    + "postingan.user_id = user.email and "
-                    + "pendonoran.user_id = '" + email + "'";
+            String query = "select * from transaksi, pendonoran where transaksi.donor_id = pendonoran.id and pendonoran.user_id = '" + email + "'";
             akses.connect();
 
             ResultSet rs = akses.executeQuery(query);
 
             while (rs.next()) {
                 Transaksi trans = new Transaksi();
+                trans.setId(rs.getInt(1));
+                trans.setJenis(rs.getString(6));
+                trans.setTanggal(rs.getString(2));
+                trans.setPostId(rs.getInt(3));
+                trans.setStatusDonor(rs.getString(8));
+                list.add(trans);
+            }
+
+            akses.disconnect();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public static Transaksi selectAllBiasa(int id) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+        Transaksi trans = new Transaksi();
+        try {
+            String query = "select * from pendonoran, transaksi, postingan, user "
+                    + "where transaksi.donor_id = pendonoran.id and "
+                    + "transaksi.post_id = postingan.id and "
+                    + "postingan.user_id = user.email and "
+                    + "transaksi.id = " + id + "";
+            akses.connect();
+
+            ResultSet rs = akses.executeQuery(query);
+
+            while (rs.next()) {
                 trans.setId(rs.getInt(5));
                 trans.setJenis(rs.getString(2));
                 trans.setTanggal(rs.getString(6));
@@ -56,14 +97,13 @@ public class PendonoranHome {
                 trans.setKeterangan(rs.getString(16));
                 trans.setDonorId(rs.getInt(1));
                 trans.setPostId(rs.getInt(9));
-                list.add(trans);
             }
 
             akses.disconnect();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return list;
+        return trans;
     }
 
     public static int selectLatest() {
