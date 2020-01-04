@@ -41,18 +41,20 @@ public class UserHome {
     public boolean cekLogin(User user) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
         String email, password;
+        int role;
         boolean cek = false;
 
         try {
-            String insert = "select email, password from user";
+            String insert = "select email, password, role_id from user";
             akses.connect();
             ResultSet rs = akses.executeQuery(insert);;
 
             while (rs.next()) {
                 email = rs.getString("email");
                 password = rs.getString("password");
+                role = rs.getInt("role_id");
 
-                if (email.equals(user.getEmail()) && password.equals(user.getPassword())) {
+                if (email.equals(user.getEmail()) && password.equals(user.getPassword()) && role == user.getRoleId()) {
                     cek = true;
                 }
             }

@@ -38,6 +38,7 @@ public class loginController extends HttpServlet {
 
         user.setEmail(email);
         user.setPassword(password);
+        user.setRoleId(role);
 
         if (role != 0) {
             if (home.cekLogin(user) == true) {
