@@ -44,6 +44,10 @@
         <servlet-name>editProfileController</servlet-name>
         <servlet-class>controller.editProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>stokController</servlet-name>
+        <servlet-class>controller.stokController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/UserController</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>editProfileController</servlet-name>
         <url-pattern>/editProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>stokController</servlet-name>
+        <url-pattern>/stokController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

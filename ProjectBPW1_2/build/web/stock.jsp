@@ -26,9 +26,9 @@
                 <div class="col s6">
                     <h4 class="white-text center-align">Stock Rumah Sakit</h4>
                     <ul class="collapsible collection">
-                        <%                            for (int i = 0; i < listRs.size(); i++) {
+                        <%                            
+                                for (int i = 0; i < listRs.size(); i++) {
                                 listRs.get(i);
-
                         %>
                         <li>
                             <div class="collapsible-header">
@@ -42,11 +42,27 @@
                                         <td>:</td>
                                         <td><%= listRs.get(i).getStok()%></td>
                                     </tr>
+                                    <tr>
+                                        <td>Qty Request </td>
+                                        <td>:</td>
+                                        <td>
+                                            <form action="stokController" method="get">
+                                            <div class="input-field col s12">
+                                                <input name="aksi" type="hidden" value="insert" class="validate">
+                                                <input name="perequest" type="hidden" value="<%=email%>" class="validate">
+                                                <input name="pemberi" type="hidden" value="<%= listRs.get(i).getEmail()%>" class="validate">
+                                                <input id="qty" name="qty" type="number" class="validate">
+                                                <label for="qty">kantong darah</label>
+                                                <span class="helper-text">isi jika anda ingin request kantong darah</span>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </table>
-                                <% if(role == 3) {%>
+                                <% if (role == 3) {%>
                                 <br>
-                                <a href="" class="btn red lighten-1 btn-join">Batalkan</a>
+                                <button class="btn red lighten-1 btn-join">Request</button>
                                 <% } %>
+                                </form>
                             </div>
                         </li>
                         <% } %>
@@ -58,7 +74,6 @@
                         <%
                             for (int i = 0; i < listUtd.size(); i++) {
                                 listUtd.get(i);
-
                         %>
                         <li>
                             <div class="collapsible-header">
@@ -72,14 +87,29 @@
                                         <td>:</td>
                                         <td><%= listUtd.get(i).getStok()%></td>
                                     </tr>
+                                    <tr>
+                                        <td>Qty Request </td>
+                                        <td>:</td>
+                                        <td>
+                                            <form action="stokController" method="get">
+                                            <div class="input-field col s12">
+                                                <input name="perequest" type="hidden" value="<%=email%>" class="validate">
+                                                <input name="pemberi" type="hidden" value="<%= listUtd.get(i).getEmail()%>" class="validate">
+                                                <input id="qty" name="qty" type="number" class="validate">
+                                                <label for="qty">kantong darah</label>
+                                                <span class="helper-text">isi jika anda ingin request kantong darah</span>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </table>
-                                <% if(role == 3) {%>
+                                <% if (role == 3) {%>
                                 <br>
-                                <a href="" class="btn red lighten-1 btn-join">Batalkan</a>
+                                <button class="btn red lighten-1 btn-join">Request</button>
                                 <% } %>
+                                </form>
                             </div>
                         </li>
-                        <% }%>
+                        <% } %>
                     </ul>
                 </div>
             </div>

@@ -8,7 +8,6 @@
 <%@page import="helper.*"%>
 <%@page import="model.*"%>
 <%
-
     boolean cekLogin = false;
     String nama = "none";
     User user = (User) session.getAttribute("dataUser");
@@ -60,17 +59,18 @@
         </nav>
     </div>
 </div>
-<% if(user.getRoleId() == 4) { %>
+<% if (user.getRoleId() == 4) { %>
 <ul id="dropdown1" class="dropdown-content">
-    <li><a href="halamanUser.jsp" class="red-text text-accent-2">Status Transaksi</a></li>
-    <li><a href="editProfile.jsp" class="red-text text-accent-2">Edit Profile</a></li>
+    <li><a href="halamanRequest.jsp" class="red-text text-accent-2">Status Transaksi</a></li>
+    <li><a href="editStock.jsp" class="red-text text-accent-2">Edit Profile</a></li>
 </ul>
 
 <%} else { %>
-    <ul id="dropdown1" class="dropdown-content">
-    <li><a href="editProfile.jsp" class="red-text text-accent-2">Edit Profile</a></li>
+<ul id="dropdown1" class="dropdown-content">
+    <li><a href="halamanRequest.jsp" class="red-text text-accent-2">Status Transaksi</a></li>
+    <li><a href="editStock.jsp" class="red-text text-accent-2">Edit Profile</a></li>
 </ul>
-<% } %>
+<% }%>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

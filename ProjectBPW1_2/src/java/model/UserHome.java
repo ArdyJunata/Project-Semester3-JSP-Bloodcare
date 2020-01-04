@@ -97,7 +97,8 @@ public class UserHome {
             String delete = "update user set nama = '" + user.getNama() + "', "
                     + "jenis_kelamin = '" + user.getJenisKelamin() + "', "
                     + "tanggal_lahir = '" + user.getTanggal() + "', "
-                    + "berat_badan = " + user.getBeratBadan() + " "
+                    + "berat_badan = " + user.getBeratBadan() + ","
+                    + "stok = " + user.getStok() + " "
                     + "where email = '" + user.getEmail() + "'";
             akses.connect();
 
@@ -132,7 +133,7 @@ public class UserHome {
         }
         return sukses;
     }
-    
+
     public static ArrayList<User> selectStockOther(String email, int role) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
         ArrayList<User> list = new ArrayList<>();
@@ -147,6 +148,7 @@ public class UserHome {
                 User user = new User();
                 user.setNama(rs.getString("nama"));
                 user.setStok(rs.getInt("stok"));
+                user.setEmail(rs.getString("email"));
                 list.add(user);
             }
 
@@ -155,5 +157,27 @@ public class UserHome {
             Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+
+    public static String cekRequested(String perequest, String pemberi) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+        boolean sukses = false;
+        String nama = null;
+
+        try {
+            String cek = "select * from restok where perequest = '" + perequest + "' and pemberi ='" + pemberi + "'";
+            akses.connect();
+
+            ResultSet rs = akses.executeQuery(cek);
+
+            while (rs.next()) {
+                nama = rs.getString(1);
+            }
+            akses.disconnect();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nama;
     }
 }

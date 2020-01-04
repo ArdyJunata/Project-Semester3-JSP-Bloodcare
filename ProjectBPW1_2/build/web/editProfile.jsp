@@ -51,6 +51,7 @@
                         </div>
                         <div class="input-field">
                             <input id="email" name="email" value="<%=email%>" type="hidden" class="validate">
+                            <input id="stok" name="stok" value="-1" type="hidden" class="validate">
                         </div>
                     </div>
                     <div class="row">

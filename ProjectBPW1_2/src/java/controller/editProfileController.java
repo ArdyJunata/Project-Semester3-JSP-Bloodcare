@@ -24,15 +24,21 @@ public class editProfileController extends HttpServlet {
         String jenis = request.getParameter("kelamin");
         String tanggal = request.getParameter("tanggal");
         int berat = Integer.parseInt(request.getParameter("berat"));
+        int stok = Integer.parseInt(request.getParameter("stok"));
 
         user.setNama(nama);
         user.setEmail(email);
         user.setJenisKelamin(jenis);
         user.setTanggal(tanggal);
         user.setBeratBadan(berat);
+        user.setStok(stok);
 
         if (home.updateProfile(user) == true) {
-            control = request.getRequestDispatcher("/editProfile.jsp");
+            if (stok >= 0) {
+                control = request.getRequestDispatcher("/editStock.jsp");
+            } else if (stok < 0) {
+                control = request.getRequestDispatcher("/editProfile.jsp");
+            }
         } else {
             control = request.getRequestDispatcher("/index.jsp");
         }
