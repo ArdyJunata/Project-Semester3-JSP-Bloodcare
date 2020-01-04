@@ -38,9 +38,8 @@
                 <ul id="nav-mobile" class="brand-logo center">
                     <li><a href="index.jsp">Home</a></li>
                     <li><a href="#">Tentang</a></li>
-                    <li><a href="#">Donor Rutin</a></li>
                 </ul>
-                <a href="#!" class="brand-logo"><i class="material-icons"></i>BloodCare</a>
+                <a href="index.jsp" class="brand-logo"><i class="material-icons"></i>BloodCare</a>
                 <ul id="navbar-items" class="right hide-on-med-and-down">
 
                     <%if (cekLogin == true) {%>

@@ -36,6 +36,14 @@
         <servlet-name>SendMail</servlet-name>
         <servlet-class>controller.SendMail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>editController</servlet-name>
+        <servlet-class>controller.editController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editProfileController</servlet-name>
+        <servlet-class>controller.editProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/UserController</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>SendMail</servlet-name>
         <url-pattern>/SendMail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editController</servlet-name>
+        <url-pattern>/editController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editProfileController</servlet-name>
+        <url-pattern>/editProfileController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

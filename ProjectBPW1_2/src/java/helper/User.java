@@ -5,9 +5,17 @@ import java.sql.Date;
 public class User {
 
     String nama, email, image, jenisKelamin, password;
-    Date tanggal;
-    int umur, beratBadan, stok, roleId;
+    String tanggal;
+    int beratBadan, stok, roleId;
     int cek;
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
 
     public int getCek() {
         return cek;
@@ -20,7 +28,6 @@ public class User {
     public User() {
         image = "not set";
         jenisKelamin = "not set";
-        umur = 0;
         beratBadan = 0;
         stok = 0;
         roleId = 2;
@@ -65,22 +72,6 @@ public class User {
 
     public void setJenisKelamin(String jenisKelamin) {
         this.jenisKelamin = jenisKelamin;
-    }
-
-    public Date getTanggal() {
-        return tanggal;
-    }
-
-    public void setTanggal(Date tanggal) {
-        this.tanggal = tanggal;
-    }
-
-    public int getUmur() {
-        return umur;
-    }
-
-    public void setUmur(int umur) {
-        this.umur = umur;
     }
 
     public int getBeratBadan() {
