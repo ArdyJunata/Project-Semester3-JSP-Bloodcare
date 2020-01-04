@@ -44,8 +44,8 @@
                             </div>
                             <div class="input-field col s12">
                                 <i class="material-icons prefix"></i>
-                                <select>
-                                    <option value="" disabled selected>Pilih Login Sebagai</option>
+                                <select name="role">
+                                    <option value="0">Pilih Login Sebagai</option>
                                     <option value="1">Admin</option>
                                     <option value="2">Masyarakat</option>
                                     <option value="3">Rumah Sakit</option>

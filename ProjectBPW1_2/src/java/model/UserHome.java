@@ -79,6 +79,7 @@ public class UserHome {
                 user.setTanggal(rs.getString(6));
                 user.setBeratBadan(rs.getInt(7));
                 user.setJenisKelamin(rs.getString(8));
+                user.setRoleId(rs.getInt("role_id"));
                 user.setStok(rs.getInt(9));
             }
             akses.disconnect();
@@ -130,5 +131,29 @@ public class UserHome {
             Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
         }
         return sukses;
+    }
+    
+    public static ArrayList<User> selectStockOther(String email, int role) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+        ArrayList<User> list = new ArrayList<>();
+
+        try {
+            String query = "select * from user where email <> '" + email + "' and role_id = " + role;
+            akses.connect();
+
+            ResultSet rs = akses.executeQuery(query);
+
+            while (rs.next()) {
+                User user = new User();
+                user.setNama(rs.getString("nama"));
+                user.setStok(rs.getInt("stok"));
+                list.add(user);
+            }
+
+            akses.disconnect();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
 }

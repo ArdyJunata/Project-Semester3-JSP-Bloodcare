@@ -34,18 +34,31 @@ public class loginController extends HttpServlet {
 
         String email = request.getParameter("email");
         String password = request.getParameter("katasandi");
+        int role = Integer.parseInt(request.getParameter("role"));
 
         user.setEmail(email);
         user.setPassword(password);
 
-        if (home.cekLogin(user) == true) {
-            control = request.getRequestDispatcher("/index.jsp");
-            session.setAttribute("dataUser", home.getUserByEmail(email));
-            user.setCek(1);
-            session.setAttribute("index", user);
+        if (role != 0) {
+            if (home.cekLogin(user) == true) {
+                session.setAttribute("dataUser", home.getUserByEmail(email));
+                user.setCek(1);
+                session.setAttribute("index", user);
+                if (role == 1) {
+                } else if (role == 2) {
+                    control = request.getRequestDispatcher("/index.jsp");
+                } else if (role == 3) {
+                    control = request.getRequestDispatcher("/stock.jsp");
+                } else if (role == 4) {
+                    control = request.getRequestDispatcher("/stock.jsp");
+                }
+
+            } else {
+                String pesan = "kesalahan, silahkan login kembali";
+                request.setAttribute("duplikatEmail", pesan);
+                control = request.getRequestDispatcher("/masuk.jsp");
+            }
         } else {
-            String pesan = "kesalahan, silahkan login kembali";
-            request.setAttribute("duplikatEmail", pesan);
             control = request.getRequestDispatcher("/masuk.jsp");
         }
 
