@@ -63,7 +63,9 @@
                         <td><%= list.get(i).getPassword()%></td>
                         <td><%= list.get(i).getTanggal()%></td>
                         <td><%= list.get(i).getJenisKelamin()%></td>
-                        <td><a class="btn btn-primary btn-sm text-white">edit</a> <a class="btn btn-danger btn-sm text-white">hapus</a> </td>
+                        <td><a href="adminEdit.jsp?email=<%= list.get(i).getEmail()%>" class="btn btn-primary btn-sm text-white">edit</a> 
+                            <a href="userController?aksi=hapus&halaman=adminPengguna.jsp&email=<%= list.get(i).getEmail()%>" class="btn btn-danger btn-sm text-white">hapus</a> 
+                        </td>
                     </tr>
                 </tbody>
                 <% }%>

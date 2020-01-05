@@ -21,7 +21,7 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="adminIndex.jsp">
           <span>Dashboard</span></a>
       </li>
@@ -54,15 +54,14 @@
         <a class="nav-link" href="adminAkun.jsp">
           <span>Admin</span></a>
       </li>
-
-
+      
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      <hr class="sidebar-divider">
+      <li class="nav-item active">
+        <a class="nav-link" href="loginController">
+          <span>Logout</span></a>
+      </li>
 
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
 
     </ul>
     <!-- End of Sidebar -->

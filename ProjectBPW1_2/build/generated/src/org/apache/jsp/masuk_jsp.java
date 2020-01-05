@@ -63,48 +63,94 @@ public final class masuk_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("        <!--Let browser know website is optimized for mobile-->\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n");
+      out.write("        <title>Home</title>\n");
       out.write("    </head>\n");
       out.write("<body>\n");
-      out.write("        <div class=\"section\">\n");
-      out.write("            <div class=\"navbar-fixed\">\n");
-      out.write("                <nav class=\"z-depth-0 navdy red lighten-1 nav\">\n");
-      out.write("                    <div class=\"nav-wrapper container\">\n");
-      out.write("                         <a href=\"#!\" class=\"brand-logo\"><i class=\"material-icons\">queue</i>BloodCare</a>\n");
-      out.write("                        <ul id=\"nav-mobile\" class=\"right hide-on-med-and-down\">\n");
-      out.write("                            <li><a href=\"sass.html\">Home</a></li>\n");
-      out.write("                            <li><a href=\"sass.html\">About</a></li>\n");
-      out.write("                            <li><a href=\"badges.html\">Login</a></li>\n");
-      out.write("                        </ul>\n");
+      out.write("        \n");
+      out.write('\n');
+
+    String pesan = (String) request.getAttribute("duplikatEmail");
+    boolean cek = false;
+    if (pesan == null) {
+        cek = false;
+    } else {
+        cek = true;
+    }
+
+
+
+      out.write("\n");
+      out.write("<div class=\"section bg\">\n");
+      out.write("    <div class=\"container\">\n");
+      out.write("        <div class=\"row\">\n");
+      out.write("            <div class=\"col m6 offset-m3\">\n");
+      out.write("                <form action=\"loginController\" method=\"post\" class=\"masuk-container z-depth-3\">\n");
+      out.write("                    <h4 class=\"center-align\">Masuk</h4>\n");
+      out.write("                    <div class=\"row\">\n");
+      out.write("                        <div class=\"col m4\">\n");
+      out.write("                            <img src=\"img/user.png\" width=\"160\">\n");
+      out.write("                        </div>\n");
+      out.write("                        <div class=\"col m8\">\n");
+      out.write("                            <div class=\"input-field col s12\">\n");
+      out.write("                                <i class=\"material-icons prefix\">email</i>\n");
+      out.write("                                <input id=\"email\" name=\"email\" type=\"email\" class=\"validate\">\n");
+      out.write("                                <label for=\"email\">Email</label>\n");
+      out.write("                                ");
+ if (cek == true) {
+      out.write("\n");
+      out.write("                                <span class=\"helper-text align-left red-text\">");
+      out.print(pesan);
+      out.write("</span>\n");
+      out.write("                                ");
+ } else {
+      out.write("\n");
+      out.write("                                ");
+ }
+      out.write("\n");
+      out.write("                            </div>\n");
+      out.write("                            <div class=\"input-field col s12\">\n");
+      out.write("                                <i class=\"material-icons prefix\">vpn_key</i>\n");
+      out.write("                                <input id=\"katasandi\" name=\"katasandi\" type=\"password\" class=\"validate\">\n");
+      out.write("                                <label for=\"katasandi\">Kata Sandi</label>\n");
+      out.write("                            </div>\n");
+      out.write("                            <div class=\"input-field col s12\">\n");
+      out.write("                                <i class=\"material-icons prefix\"></i>\n");
+      out.write("                                <select name=\"role\">\n");
+      out.write("                                    <option value=\"0\">Pilih Login Sebagai</option>\n");
+      out.write("                                    <option value=\"1\">Admin</option>\n");
+      out.write("                                    <option value=\"2\">Masyarakat</option>\n");
+      out.write("                                    <option value=\"3\">Rumah Sakit</option>\n");
+      out.write("                                    <option value=\"4\">UTD</option>\n");
+      out.write("                                </select>\n");
+      out.write("                            </div>\n");
+      out.write("                        <button class=\"btn red lighten-1\">Masuk</button>\n");
+      out.write("                        </div>\n");
       out.write("                    </div>\n");
-      out.write("                </nav>\n");
+      out.write("                    <p class=\"center-align\">belum menjadi anggota ? Klik <a href=\"daftar.jsp\">Daftar</a></p>\n");
+      out.write("                </form>\n");
       out.write("            </div>\n");
-      out.write("        </div>\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<div class=\"container\">\n");
-      out.write("    <div class=\"row\">\n");
-      out.write("        <div class=\"col m4 offset-4\">\n");
-      out.write("            <form class=\"masuk-container\">\n");
-      out.write("                <h2>Masuk</h2>\n");
-      out.write("                <div class=\"row\">\n");
-      out.write("                    <div class=\"col m5\">\n");
-      out.write("                        <img src=\"img/user.png\" width=\"160\">\n");
-      out.write("                    </div>\n");
-      out.write("                    <div class=\"col m7\">\n");
-      out.write("                        \n");
-      out.write("                    </div>\n");
-      out.write("                </div>\n");
-      out.write("            </form>\n");
       out.write("        </div>\n");
       out.write("    </div>\n");
       out.write("</div>\n");
+      out.write("</div>\n");
+      out.write("\n");
+      out.write("<script>\n");
+      out.write("    \n");
+      out.write("    document.addEventListener(\"DOMContentLoaded\", function () {\n");
+      out.write("        const box = document.querySelectorAll(\"select\");\n");
+      out.write("        M.FormSelect.init(box, {});\n");
+      out.write("    });\n");
+      out.write("    \n");
+      out.write("</script>\n");
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("<!--JavaScript at end of body for optimized loading-->\n");
-      out.write("        <script type=\"text/javascript\" src=\"js/materialize.min.js\"></script>\n");
-      out.write("    </body>\n");
+      out.write("<script type=\"text/javascript\" src=\"js/myjs.js\"></script>\n");
+      out.write("<script type=\"text/javascript\" src=\"js/materialize.min.js\"></script>\n");
+      out.write("</body>\n");
       out.write("</html>\n");
       out.write('\n');
     } catch (Throwable t) {

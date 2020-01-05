@@ -37,6 +37,26 @@ public class UserHome {
             return false;
         }
     }
+    
+     public boolean deleteUser(String email) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+        boolean sukses = false;
+
+        try {
+            String delete = "delete from user where email = '" + email + "'";
+            akses.connect();
+
+            int baris = akses.executeUpdate(delete);
+            if (baris > 0) {
+                sukses = true;
+            }
+            akses.disconnect();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sukses;
+    }
 
     public boolean cekLogin(User user) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
@@ -96,11 +116,38 @@ public class UserHome {
         boolean sukses = false;
 
         try {
-            String delete = "update user set nama = '" + user.getNama() + "', "
+            String update = "update user set nama = '" + user.getNama() + "', "
                     + "jenis_kelamin = '" + user.getJenisKelamin() + "', "
                     + "tanggal_lahir = '" + user.getTanggal() + "', "
                     + "berat_badan = " + user.getBeratBadan() + ","
                     + "stok = " + user.getStok() + " "
+                    + "where email = '" + user.getEmail() + "'";
+            akses.connect();
+
+            int baris = akses.executeUpdate(update);
+            if (baris > 0) {
+                sukses = true;
+            }
+            akses.disconnect();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sukses;
+    }
+    
+    public boolean updateUser(User user) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+        boolean sukses = false;
+
+        try {
+            String delete = "update user set nama = '" + user.getNama() + "', "
+                    + "email = '" + user.getEmail() +"', "
+                    + "jenis_kelamin = '" + user.getJenisKelamin() + "', "
+                    + "tanggal_lahir = '" + user.getTanggal() + "', "
+                    + "berat_badan = " + user.getBeratBadan() + ","
+                    + "stok = " + user.getStok() + ", "
+                    + "role_id = " + user.getRoleId() + " "
                     + "where email = '" + user.getEmail() + "'";
             akses.connect();
 
