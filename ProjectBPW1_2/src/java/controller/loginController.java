@@ -46,6 +46,7 @@ public class loginController extends HttpServlet {
                 user.setCek(1);
                 session.setAttribute("index", user);
                 if (role == 1) {
+                    control = request.getRequestDispatcher("/adminIndex.jsp");
                 } else if (role == 2) {
                     control = request.getRequestDispatcher("/index.jsp");
                 } else if (role == 3) {
