@@ -47,7 +47,7 @@
     <div class="container center-align">
         <h3>DONOR DARAH RUTIN</h3>
         <p>donor darah rutin untuk menjaga kesehatan dan kebugaran tubuh anda</p>
-        <button class="waves-effect red lighten-1 btn-large btn-join modal-trigger" data-target="rutin">Cari Pendonor</button>
+        <button class="waves-effect red lighten-1 btn-large btn-join modal-trigger" data-target="rutin">Donor Rutin</button>
     </div>
 </div>
 <% } %>

@@ -23,14 +23,13 @@ public class editProfileController extends HttpServlet {
         String email = request.getParameter("email");
         String jenis = request.getParameter("kelamin");
         String tanggal = request.getParameter("tanggal");
-        int berat = Integer.parseInt(request.getParameter("berat"));
         int stok = Integer.parseInt(request.getParameter("stok"));
 
         user.setNama(nama);
         user.setEmail(email);
         user.setJenisKelamin(jenis);
         user.setTanggal(tanggal);
-        user.setBeratBadan(berat);
+        user.setBeratBadan(0);
         user.setStok(stok);
 
         if (home.updateProfile(user) == true) {

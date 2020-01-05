@@ -31,9 +31,20 @@
                 </div>
                 <form action="editProfileController" method="post" class="col s8">
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s12">
                             <input id="nama" name="nama" value="<%=nama%>" type="text" class="validate">
                             <label for="nama">Nama Anda</label>
+                        </div>
+                        
+                        <div class="input-field">
+                            <input id="email" name="email" value="<%=email%>" type="hidden" class="validate">
+                            <input id="stok" name="stok" value="-1" type="hidden" class="validate">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="tanggal" name="tanggal" type="text" value="<%=tanggal%>" class="validate datepicker">
+                            <label for="tanggal">Tanggal Lahir</label>
                         </div>
                         <div class="input-field col s6">
                             <% if (jenis.equals("Laki-laki")) {%>
@@ -49,21 +60,6 @@
                             <% }%>
                             <label>Jenis Kelamin</label>
                         </div>
-                        <div class="input-field">
-                            <input id="email" name="email" value="<%=email%>" type="hidden" class="validate">
-                            <input id="stok" name="stok" value="-1" type="hidden" class="validate">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input id="tanggal" name="tanggal" type="text" value="<%=tanggal%>" class="validate datepicker">
-                            <label for="tanggal">Tanggal Lahir</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input id="berat" name="berat" type="number" value="<%=berat%>"  class="validate">
-                            <label for="berat">Berat Badan</label>
-                            <span class="helper-text">satuan kg (kilogram)</span>
-                        </div>
                     </div>
 
                     <div class="row">
@@ -72,6 +68,7 @@
                             <br><br>
                             <a href="editEmail.jsp">Ubah Alamat Email</a>
                         </div>
+                        
                     </div>
             </div>
         </div>
