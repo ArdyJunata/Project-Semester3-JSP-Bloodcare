@@ -160,6 +160,36 @@ public class UserHome {
         }
         return list;
     }
+    
+    public static ArrayList<User> getUserByRole(int role) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+        ArrayList<User> list = new ArrayList<>();
+
+        try {
+            String query = "select * from user where role_id = " + role;
+            akses.connect();
+
+            ResultSet rs = akses.executeQuery(query);
+
+            while (rs.next()) {
+                User user = new User();
+                user.setNama(rs.getString("nama"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setTanggal(rs.getString("tanggal_lahir"));
+                user.setBeratBadan(rs.getInt("berat_badan"));
+                user.setJenisKelamin(rs.getString("jenis_kelamin"));
+                user.setStok(rs.getInt("stok"));
+                user.setRoleId(rs.getInt("role_id"));
+                list.add(user);
+            }
+
+            akses.disconnect();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
 
     public static String cekRequested(String perequest, String pemberi) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();

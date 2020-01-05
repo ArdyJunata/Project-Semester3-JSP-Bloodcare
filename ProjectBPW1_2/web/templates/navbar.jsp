@@ -37,7 +37,7 @@
             <div class="nav-wrapper container">
                 <ul id="nav-mobile" class="brand-logo center">
                     <li><a href="index.jsp">Home</a></li>
-                    <li><a href="#">Tentang</a></li>
+                    <li><a class="modal-trigger" data-target="tentang">Tentang</a></li>
                 </ul>
                 <a href="index.jsp" class="brand-logo"><i class="material-icons"></i>BloodCare</a>
                 <ul id="navbar-items" class="right hide-on-med-and-down">
@@ -65,8 +65,15 @@
     <li><a href="halamanUser.jsp" class="red-text text-accent-2">Status Transaksi</a></li>
     <li><a href="editProfile.jsp" class="red-text text-accent-2">Edit Profile</a></li>
 </ul>
+                        
+<%@include file="modalTentang.jsp" %>
 
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const box = document.querySelectorAll("#tentang");
+        M.Modal.init(box, {});
+    });
+    
     document.addEventListener("DOMContentLoaded", function () {
         const drop = document.querySelectorAll(".dropdown-trigger");
         M.Dropdown.init(drop, {

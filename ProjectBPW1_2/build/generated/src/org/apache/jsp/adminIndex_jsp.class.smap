@@ -1,0 +1,21 @@
+SMAP
+adminIndex_jsp.java
+JSP
+*S JSP
+*F
++ 0 adminIndex.jsp
+adminIndex.jsp
++ 1 headerAdmin.jsp
+templates/headerAdmin.jsp
++ 2 sidebar.jsp
+templates/sidebar.jsp
++ 3 footerAdmin.jsp
+templates/footerAdmin.jsp
+*L
+5,4:51
+5#1,25:54
+8#0:79
+5#2,65:80
+9#0,35:144
+5#3,17:178
+*E
