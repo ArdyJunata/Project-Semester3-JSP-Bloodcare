@@ -29,15 +29,21 @@ public class stokController extends HttpServlet {
             String perequest = request.getParameter("perequest");
             String pemberi = request.getParameter("pemberi");
             int qty = Integer.parseInt(request.getParameter("qty"));
-            stok.setPemberi(pemberi);
-            stok.setPerequest(perequest);
-            stok.setQty(qty);
-            stok.setTanggal(dtf.format(now));
+            int stoks = Integer.parseInt(request.getParameter("stok"));
 
-            if (home.insertUser(stok)) {
-                control = request.getRequestDispatcher("/halamanRequest.jsp");
-            } else {
+            if (qty > stoks) {
                 control = request.getRequestDispatcher("/stock.jsp");
+            } else if (qty <= stoks) {
+                stok.setPemberi(pemberi);
+                stok.setPerequest(perequest);
+                stok.setQty(qty);
+                stok.setTanggal(dtf.format(now));
+
+                if (home.insertUser(stok)) {
+                    control = request.getRequestDispatcher("/halamanRequest.jsp");
+                } else {
+                    control = request.getRequestDispatcher("/stock.jsp");
+                }
             }
         } else if (aksi.equals("terima")) {
             int id = Integer.parseInt(request.getParameter("id"));

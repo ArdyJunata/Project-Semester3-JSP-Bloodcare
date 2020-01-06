@@ -49,6 +49,7 @@
                         </li>
                         <% } else {
                             Transaksi biasa = PendonoranHome.selectAllBiasa(list2.get(i).getId());
+
                         %>
                         <li>
                             <div class="collapsible-header">
@@ -98,7 +99,9 @@
                                         <td><%= biasa.getStatusDonor()%></td>
                                     </tr>   
                                 </table><br>
+                                <%  if(biasa.getStatusDonor().equals("dibatalkan")) { } else { %>
                                 <a href="pendonoranController?aksi=update&donorId=<%= biasa.getDonorId()%>&postId=<%= biasa.getPostId()%>" class="btn red lighten-1 btn-join">Batalkan</a>
+                                <% } %>
                             </div>
                         </li>
                         <% }
@@ -163,6 +166,7 @@
                                     </tr>    
                                     <%
                                         String cekNama = PostinganHome.selectAllSelfRequested(list.get(i).getId());
+                                        
                                         if (cekNama != null) {
                                     %>
                                     <tr>
@@ -172,7 +176,7 @@
                                     </tr>    
                                     <% }%>
                                 </table><br>
-                                <a href="postinganController?aksi=hapus&id=<%= list.get(i).getId()%>" class="btn red lighten-1 btn-join">Hapus Postingan</a>
+                                <a href="postinganController?aksi=hapus&id=<%= list.get(i).getPostId() %>" class="btn red lighten-1 btn-join">Hapus Postingan</a>
                             </div>
                         </li>
                         <% }%>

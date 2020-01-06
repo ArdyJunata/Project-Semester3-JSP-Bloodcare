@@ -259,4 +259,26 @@ public class UserHome {
         }
         return nama;
     }
+    
+    public static int countUser(int role) {
+        AksesJdbcOdbc akses = new AksesJdbcOdbc();
+        boolean sukses = false;
+        int jumlah = 0;
+
+        try {
+            String cek = "select count(id) as jumlah from user where role_id = " + role;
+            akses.connect();
+
+            ResultSet rs = akses.executeQuery(cek);
+
+            while (rs.next()) {
+                jumlah = rs.getInt(1);
+            }
+            akses.disconnect();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(PostinganHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return jumlah;
+    }
 }

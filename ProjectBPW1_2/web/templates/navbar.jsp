@@ -9,27 +9,16 @@
 <%@page import="model.*"%>
 <%
 
-    boolean cekLogin = false;
+    boolean cekLogin = true;
     String nama = "none";
     User user = (User) session.getAttribute("dataUser");
     User cek = (User) session.getAttribute("index");
-    try {
 
-        if (cek.getCek() == 1) {
-            UserHome home = new UserHome();
+    UserHome home = new UserHome();
 
-            cekLogin = home.cekLogin(user);
 
-            nama = user.getNama();
-        } else {
-            cekLogin = false;
-            nama = null;
-        }
-    } catch (NullPointerException ex) {
-        RequestDispatcher control = null;
-        control = request.getRequestDispatcher("/loginController");
-        control.forward(request, response);
-    }
+    nama = user.getNama();
+
 %>
 <div class="section">
     <div class="navbar-fixed">
@@ -65,7 +54,7 @@
     <li><a href="halamanUser.jsp" class="red-text text-accent-2">Status Transaksi</a></li>
     <li><a href="editProfile.jsp" class="red-text text-accent-2">Edit Profile</a></li>
 </ul>
-                        
+
 <%@include file="modalTentang.jsp" %>
 
 <script>
@@ -73,7 +62,7 @@
         const box = document.querySelectorAll("#tentang");
         M.Modal.init(box, {});
     });
-    
+
     document.addEventListener("DOMContentLoaded", function () {
         const drop = document.querySelectorAll(".dropdown-trigger");
         M.Dropdown.init(drop, {

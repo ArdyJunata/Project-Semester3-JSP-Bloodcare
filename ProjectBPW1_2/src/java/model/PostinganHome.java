@@ -28,7 +28,7 @@ public class PostinganHome {
                     + "" + posting.getJmlKantung() + ","
                     + "'" + posting.getKeterangan() + "',"
                     + "'" + posting.getUserId() + "',"
-                    + "'menunggu')";
+                    + "'tersedia')";
             akses.connect();
             akses.executeUpdate(insert);
             akses.disconnect();
@@ -153,7 +153,7 @@ public class PostinganHome {
         boolean sukses = false;
 
         try {
-            String delete = "delete from postingan where id = " + id + "";
+            String delete = "delete from postingan where id = " + id;
             akses.connect();
 
             int baris = akses.executeUpdate(delete);

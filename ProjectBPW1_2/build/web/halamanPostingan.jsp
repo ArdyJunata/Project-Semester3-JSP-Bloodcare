@@ -39,7 +39,7 @@
                             </div>
                             <div class="card-action">
                                 <%
-                                    if(list.get(i).getStatus().equals("menunggu")) {
+                                    if(list.get(i).getStatus().equals("tersedia")) {
                                 %>
                                 <a href="pendonoranController?aksi=insert&jenis=1&email=<%= email %>&idPost=<%= list.get(i).getId() %>" class="btn red lighten-1 btn-join">Request</a>
                                 <% } else {  %>

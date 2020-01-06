@@ -51,6 +51,7 @@
                                                 <input name="aksi" type="hidden" value="insert" class="validate">
                                                 <input name="perequest" type="hidden" value="<%=email%>" class="validate">
                                                 <input name="pemberi" type="hidden" value="<%= listRs.get(i).getEmail()%>" class="validate">
+                                                <input name="stok" type="hidden" value="<%= listRs.get(i).getStok()%>" class="validate">
                                                 <input id="qty" name="qty" type="number" class="validate">
                                                 <label for="qty">kantong darah</label>
                                                 <span class="helper-text">isi jika anda ingin request kantong darah</span>
@@ -93,8 +94,10 @@
                                         <td>
                                             <form action="stokController" method="get">
                                             <div class="input-field col s12">
+                                                <input name="aksi" type="hidden" value="insert" class="validate">
                                                 <input name="perequest" type="hidden" value="<%=email%>" class="validate">
                                                 <input name="pemberi" type="hidden" value="<%= listUtd.get(i).getEmail()%>" class="validate">
+                                                <input name="stok" type="hidden" value="<%= listUtd.get(i).getStok()%>" class="validate">
                                                 <input id="qty" name="qty" type="number" class="validate">
                                                 <label for="qty">kantong darah</label>
                                                 <span class="helper-text">isi jika anda ingin request kantong darah</span>
