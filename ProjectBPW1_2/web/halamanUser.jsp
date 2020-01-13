@@ -19,9 +19,9 @@
 %>
 
 
-<div class="section" style="margin-top: 36px;">
+<div class="section red lighten-1" style="height: 100%; margin-top: 36px;">
     <div class="red lighten-1">
-        <div class="container" style="height: 100%">
+        <div class="container">
             <div class="row">
                 <div class="col s6">
                     <h4 class="white-text center-align">History Pendonoran</h4>

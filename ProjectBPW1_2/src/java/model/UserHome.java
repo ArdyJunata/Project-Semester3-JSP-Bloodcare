@@ -37,8 +37,8 @@ public class UserHome {
             return false;
         }
     }
-    
-     public boolean deleteUser(String email) {
+
+    public boolean deleteUser(String email) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
         boolean sukses = false;
 
@@ -58,23 +58,21 @@ public class UserHome {
         return sukses;
     }
 
-    public boolean cekLogin(User user) {
+    public boolean cekLogin(User user, int role) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
         String email, password;
-        int role;
         boolean cek = false;
 
         try {
-            String insert = "select email, password, role_id from user";
+            String insert = "select email, password from user where role_id = " + role;
             akses.connect();
             ResultSet rs = akses.executeQuery(insert);;
 
             while (rs.next()) {
                 email = rs.getString("email");
                 password = rs.getString("password");
-                role = rs.getInt("role_id");
 
-                if (email.equals(user.getEmail()) && password.equals(user.getPassword()) && role == user.getRoleId()) {
+                if (email.equals(user.getEmail()) && password.equals(user.getPassword())) {
                     cek = true;
                 }
             }
@@ -135,20 +133,21 @@ public class UserHome {
         }
         return sukses;
     }
-    
-    public boolean updateUser(User user) {
+
+    public boolean updateUser(User user, String email) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
         boolean sukses = false;
 
         try {
             String delete = "update user set nama = '" + user.getNama() + "', "
-                    + "email = '" + user.getEmail() +"', "
+                    + "email = '" + user.getEmail() + "', "
+                    + "password = '" + user.getPassword() + "', "
                     + "jenis_kelamin = '" + user.getJenisKelamin() + "', "
                     + "tanggal_lahir = '" + user.getTanggal() + "', "
                     + "berat_badan = " + user.getBeratBadan() + ","
                     + "stok = " + user.getStok() + ", "
                     + "role_id = " + user.getRoleId() + " "
-                    + "where email = '" + user.getEmail() + "'";
+                    + "where email = '" + email + "'";
             akses.connect();
 
             int baris = akses.executeUpdate(delete);
@@ -207,7 +206,7 @@ public class UserHome {
         }
         return list;
     }
-    
+
     public static ArrayList<User> getUserByRole(int role) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
         ArrayList<User> list = new ArrayList<>();
@@ -259,7 +258,7 @@ public class UserHome {
         }
         return nama;
     }
-    
+
     public static int countUser(int role) {
         AksesJdbcOdbc akses = new AksesJdbcOdbc();
         boolean sukses = false;

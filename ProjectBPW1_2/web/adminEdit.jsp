@@ -45,7 +45,7 @@
                             <tr>
                                 <td>Email</td>
                                 <td>:</td>
-                                <td><input class="form-control" type="Email" name="email" value="<%=email%>"></td>
+                                <td><input class="form-control" type="Email" name="email1" value="<%=email%>"></td>
                             </tr>
                             <tr>
                                 <td>Password</td>
@@ -63,8 +63,8 @@
                                 <td><input class="form-control" type="text" name="jenis" value="<%=jenis%>"></td>
                             </tr>
 
-                            <input type="hidden" name="stok" value="<%= stok %>">
-                            <input type="hidden" name="role" value="<%= role %>">
+                            <input type="hidden" name="stok" value="<%= stok%>">
+                            <input type="hidden" name="role" value="<%= role%>">
                             <input type="hidden" name="halaman" value="adminPengguna.jsp">
 
                             <% } else if (role == 3 || role == 4) {%> 
@@ -76,7 +76,7 @@
                             <tr>
                                 <td>Email</td>
                                 <td>:</td>
-                                <td><input class="form-control" type="Email" name="email" value="<%=email%>"></td>
+                                <td><input class="form-control" type="Email" name="email1" value="<%=email%>"></td>
                             </tr>
                             <tr>
                                 <td>Password</td>
@@ -88,11 +88,11 @@
                                 <td>:</td>
                                 <td><input class="form-control" type="text" name="stok" value="<%=stok%>"></td>
                             </tr>
-                            
-                            <input type="hidden" name="tanggal" value="<%= tanggal %>">
-                            <input type="hidden" name="jenis" value="<%= jenis %>">
-                            <input type="hidden" name="role" value="<%= role %>">
-                            <% if(role == 3) {%>
+
+                            <input type="hidden" name="tanggal" value="<%= tanggal%>">
+                            <input type="hidden" name="jenis" value="<%= jenis%>">
+                            <input type="hidden" name="role" value="<%= role%>">
+                            <% if (role == 3) {%>
                             <input type="hidden" name="halaman" value="adminRs.jsp">
                             <% } else {%>
                             <input type="hidden" name="halaman" value="adminUtd.jsp">
@@ -106,25 +106,26 @@
                             <tr>
                                 <td>Email</td>
                                 <td>:</td>
-                                <td><input class="form-control" type="Email" name="email" value="<%=email%>"></td>
+                                <td><input class="form-control" type="Email" name="email1" value="<%=email%>"></td>
                             </tr>
                             <tr>
                                 <td>Password</td>
                                 <td>:</td>
                                 <td><input class="form-control" type="text" name="password" value="<%=password%>"></td>
                             </tr>
+                            <input type="hidden" name="halaman" value="adminAkun.jsp">
                             <% }%>
                             <tr>
                                 <td></td>
                                 <td></td>
                                 <td><button type="submit" class="btn btn-primary">Simpan</button></td>
                             </tr>
-                            <input type="hidden" name="tanggal" value="<%= tanggal %>">
-                            <input type="hidden" name="jenis" value="<%= jenis %>">
-                            <input type="hidden" name="role" value="<%= role %>">
-                            <input type="hidden" name="stok" value="<%= stok %>">
-                            <input type="hidden" name="halaman" value="adminAkun.jsp">
+                            <input type="hidden" name="tanggal" value="<%= tanggal%>">
+                            <input type="hidden" name="jenis" value="<%= jenis%>">
+                            <input type="hidden" name="role" value="<%= role%>">
+                            <input type="hidden" name="stok" value="<%= stok%>">
                         </table>
+                        <input type="hidden" name="email" value="<%=email%>">
                         <input type="hidden" name="aksi" value="edit">
                     </form>
                 </div>

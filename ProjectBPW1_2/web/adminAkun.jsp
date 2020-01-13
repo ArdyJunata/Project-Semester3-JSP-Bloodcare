@@ -13,6 +13,7 @@
 <%
 
     ArrayList<User> list = UserHome.getUserByRole(1);
+    String pesan = (String) request.getAttribute("pesan");
 
 %>
 
@@ -26,6 +27,20 @@
 
             <!-- Page Heading -->
             <h1 class="h3 mb-4 text-gray-800">Akun Admin</h1>
+            <%                
+                if (pesan != null) {
+                    if (pesan.equals("berhasil")) {
+            %>
+            <div class="alert alert-success" role="alert">
+                Aksi Berhasil!
+            </div>
+            <% } else if (pesan.equals("gagal")) { %>
+            <div class="alert alert-danger" role="alert">
+                Aksi Gagal!
+            </div>
+            <% }
+                } %>
+            
             <button type="button" class="btn btn-primary" style="margin-bottom: 20px;" data-toggle="modal" data-target="#exampleModal">
                 Tambah Pengguna
             </button>

@@ -27,10 +27,10 @@ public class postinganController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String cek = request.getParameter("aksi");
-        int id = Integer.parseInt(request.getParameter("id"));
         RequestDispatcher control = null;
         PostinganHome home = new PostinganHome();
         if (cek.equals("hapus")) {
+            int id = Integer.parseInt(request.getParameter("id"));
             if (home.deletePost(id) == true) {
                 home.deleteTrans(id);
                 control = request.getRequestDispatcher("/halamanUser.jsp");

@@ -8,17 +8,29 @@
 <%@page import="helper.*"%>
 <%@page import="model.*"%>
 <%
-
-    boolean cekLogin = true;
+    boolean cekLogin = false;
     String nama = "none";
     User user = (User) session.getAttribute("dataUser");
     User cek = (User) session.getAttribute("index");
+    User user1 = new User();
+    try {
 
-    UserHome home = new UserHome();
+        if (cek.getCek() == 1) {
+            UserHome home = new UserHome();
+            user1 = home.getUserByEmail(user.getEmail());
+            int role = user1.getRoleId();
+            cekLogin = home.cekLogin(user,role);
 
-
-    nama = user.getNama();
-
+            nama = user.getNama();
+        } else {
+            cekLogin = false;
+            nama = null;
+        }
+    } catch (NullPointerException ex) {
+        RequestDispatcher control = null;
+        control = request.getRequestDispatcher("/loginController");
+        control.forward(request, response);
+    }
 %>
 <div class="section">
     <div class="navbar-fixed">

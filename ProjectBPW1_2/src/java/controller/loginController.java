@@ -34,33 +34,32 @@ public class loginController extends HttpServlet {
 
         String email = request.getParameter("email");
         String password = request.getParameter("katasandi");
-        int role = Integer.parseInt(request.getParameter("role"));
 
         user.setEmail(email);
         user.setPassword(password);
-        user.setRoleId(role);
 
-        if (role != 0) {
-            if (home.cekLogin(user) == true) {
-                session.setAttribute("dataUser", home.getUserByEmail(email));
-                user.setCek(1);
-                session.setAttribute("index", user);
-                if (role == 1) {
-                    control = request.getRequestDispatcher("/adminIndex.jsp");
-                } else if (role == 2) {
-                    control = request.getRequestDispatcher("/index.jsp");
-                } else if (role == 3) {
-                    control = request.getRequestDispatcher("/stock.jsp");
-                } else if (role == 4) {
-                    control = request.getRequestDispatcher("/stock.jsp");
-                }
+        User user1 = new User();
 
-            } else {
-                String pesan = "kesalahan, silahkan login kembali";
-                request.setAttribute("duplikatEmail", pesan);
-                control = request.getRequestDispatcher("/masuk.jsp");
+        user1 = home.getUserByEmail(email);
+        int role = user1.getRoleId();
+
+        if (home.cekLogin(user, role) == true) {
+            session.setAttribute("dataUser", home.getUserByEmail(email));
+            user.setCek(1);
+            session.setAttribute("index", user);
+            if (role == 1) {
+                control = request.getRequestDispatcher("/adminIndex.jsp");
+            } else if (role == 2) {
+                control = request.getRequestDispatcher("/index.jsp");
+            } else if (role == 3) {
+                control = request.getRequestDispatcher("/stock.jsp");
+            } else if (role == 4) {
+                control = request.getRequestDispatcher("/stock.jsp");
             }
+
         } else {
+            String pesan = "kesalahan, silahkan login kembali";
+            request.setAttribute("duplikatEmail", pesan);
             control = request.getRequestDispatcher("/masuk.jsp");
         }
 
