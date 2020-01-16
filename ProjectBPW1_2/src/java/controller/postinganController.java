@@ -82,7 +82,7 @@ public class postinganController extends HttpServlet {
         if (home.insertUser(posting) == true) {
             control = request.getRequestDispatcher("/transaksiController?aksi=post");
         } else {
-            control = request.getRequestDispatcher("/index.jsp");
+            control = request.getRequestDispatcher("/masuk.jsp");
         }
         control.forward(request, response);
 

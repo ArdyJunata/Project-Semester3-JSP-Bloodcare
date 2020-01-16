@@ -118,7 +118,7 @@
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td><button type="submit" class="btn btn-primary">Simpan</button></td>
+                                <td><button onclick="return confirm('are your sure ?')" type="submit" class="btn btn-primary">Simpan</button></td>
                             </tr>
                             <input type="hidden" name="tanggal" value="<%= tanggal%>">
                             <input type="hidden" name="jenis" value="<%= jenis%>">

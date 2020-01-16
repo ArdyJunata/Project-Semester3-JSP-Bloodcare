@@ -14,8 +14,6 @@
     } else {
         cek = true;
     }
-
-
 %>
 <div class="section bg">
     <div class="container">

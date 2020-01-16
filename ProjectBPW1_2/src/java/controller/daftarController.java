@@ -35,12 +35,11 @@ public class daftarController extends HttpServlet {
         user.setNama(nama);
         user.setEmail(email);
         user.setPassword(password);
-
         if (userHome.insertUser(user) == true) {
             control = request.getRequestDispatcher("/masuk.jsp");
             control.include(request, response);
         } else {
-            pesan = "Email telah terdaftar";
+            pesan = "Kesalahan silahakan isi field kembali";
             request.setAttribute("duplikatEmail", pesan);
             control = request.getRequestDispatcher("/daftar.jsp");
             control.forward(request, response);

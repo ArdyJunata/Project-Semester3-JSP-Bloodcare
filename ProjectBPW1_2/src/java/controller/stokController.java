@@ -32,6 +32,8 @@ public class stokController extends HttpServlet {
             int stoks = Integer.parseInt(request.getParameter("stok"));
 
             if (qty > stoks) {
+                String pesan = "tidak cukup";
+                request.setAttribute("pesan", pesan);
                 control = request.getRequestDispatcher("/stock.jsp");
             } else if (qty <= stoks) {
                 stok.setPemberi(pemberi);
@@ -44,6 +46,10 @@ public class stokController extends HttpServlet {
                 } else {
                     control = request.getRequestDispatcher("/stock.jsp");
                 }
+            } else if (qty < 1) {
+                String pesan = "tidak bisa";
+                request.setAttribute("pesan", pesan);
+                control = request.getRequestDispatcher("/stock.jsp");
             }
         } else if (aksi.equals("terima")) {
             int id = Integer.parseInt(request.getParameter("id"));

@@ -41,7 +41,7 @@
             <% }
                 } %>
             
-            <button type="button" class="btn btn-primary" style="margin-bottom: 20px;" data-toggle="modal" data-target="#exampleModal">
+            <button onclick="return confirm('are your sure ?')" type="button" class="btn btn-primary" style="margin-bottom: 20px;" data-toggle="modal" data-target="#exampleModal">
                 Tambah Pengguna
             </button>
             
@@ -75,7 +75,7 @@
                         <td><%= list.get(i).getEmail() %></td>
                         <td><%= list.get(i).getPassword() %></td>
                         <td><a href="adminEdit.jsp?email=<%= list.get(i).getEmail()%>" class="btn btn-primary btn-sm text-white">edit</a> 
-                            <a href="userController?aksi=hapus&halaman=adminAkun.jsp&email=<%= list.get(i).getEmail()%>" class="btn btn-danger btn-sm text-white">hapus</a> </td>
+                            <a onclick="return confirm('are your sure ?')" href="userController?aksi=hapus&halaman=adminAkun.jsp&email=<%= list.get(i).getEmail()%>" class="btn btn-danger btn-sm text-white">hapus</a> </td>
                     </tr>
                 </tbody>
                 <% }%>

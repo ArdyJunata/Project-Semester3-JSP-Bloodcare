@@ -48,7 +48,7 @@
             <%@include file="templates/modalTambahPengguna.jsp" %>
     <input type="hidden" name="role" value="4">
     <input type="hidden" name="halaman" value="adminUtd.jsp">
-    <button type="submit" class="btn btn-primary">Simpan</button>
+    <button onclick="return confirm('are your sure ?')" type="submit" class="btn btn-primary">Simpan</button>
                 </form>
             </div>
         </div>
@@ -77,7 +77,7 @@
                         <td><%= list.get(i).getPassword() %></td>
                         <td><%= list.get(i).getStok() %></td>
                         <td><a href="adminEdit.jsp?email=<%= list.get(i).getEmail()%>" class="btn btn-primary btn-sm text-white">edit</a> 
-                            <a href="userController?aksi=hapus&halaman=adminUtd.jsp&email=<%= list.get(i).getEmail()%>" class="btn btn-danger btn-sm text-white">hapus</a> </td>
+                            <a onclick="return confirm('are your sure ?')" href="userController?aksi=hapus&halaman=adminUtd.jsp&email=<%= list.get(i).getEmail()%>" class="btn btn-danger btn-sm text-white">hapus</a> </td>
                     </tr>
                 </tbody>
                 <% }%>

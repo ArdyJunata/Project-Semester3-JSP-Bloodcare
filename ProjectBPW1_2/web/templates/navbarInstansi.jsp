@@ -17,7 +17,12 @@
         if (cek.getCek() == 1) {
             UserHome home = new UserHome();
 
-            cekLogin = home.cekLogin(user);
+            User user1 = new User();
+
+            user1 = home.getUserByEmail(user.getEmail());
+            int role = user1.getRoleId();
+
+            cekLogin = home.cekLogin(user, role);
 
             nama = user.getNama();
         } else {

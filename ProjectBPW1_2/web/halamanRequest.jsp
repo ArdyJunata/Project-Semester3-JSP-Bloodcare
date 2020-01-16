@@ -26,6 +26,8 @@
             <div class="row">
                 <%                    if (role == 4) {
                 %>
+                <h2 class="center-align white-text">Halaman Status</h2>
+                <hr>
                 <div class="col s3">
                 </div>
                 <div class="col s6">
@@ -77,6 +79,8 @@
                     </ul>
                 </div>
                 <% } else if (role == 3) { %>
+                <h2 class="center-align white-text">Halaman Status Requestan dan Permintaan</h2>
+                <hr>
                 <div class="col s6">
                     <h4 class="white-text center-align">Perequest Kantung Darah</h4>
                     <ul class="collapsible collection">

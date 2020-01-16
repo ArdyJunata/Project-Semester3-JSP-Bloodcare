@@ -23,7 +23,8 @@
                 <h3 class="white-text center-align">Permintaan Darah</h3>
                 <%                    for (int i = 0; i < list.size(); i++) {
                         list.get(i);
-                        if ((i + 1) % 2 == 0) {
+                        if (list.get(i).getStatus().equals("tersedia")) {   
+                            if ((i + 1) % 2 == 0) {
                 %>
                 <div class="row">
                     <div class="col s6">
@@ -39,12 +40,10 @@
                             </div>
                             <div class="card-action">
                                 <%
-                                    if (list.get(i).getStatus().equals("tersedia")) {
+
                                 %>
                                 <a href="pendonoranController?aksi=insert&jenis=1&email=<%= email%>&idPost=<%= list.get(i).getId()%>" class="btn red lighten-1 btn-join">Request</a>
-                                <% } else {%>
-                                <a href="#" class="red-text text-lighten-1"> Status : <%= list.get(i).getStatus()%></a>
-                                <% } %>
+
                             </div>
                         </div>
                     </div>
@@ -62,17 +61,14 @@
                             </p>
                         </div>
                         <div class="card-action">
-                            <%
-                                if (list.get(i).getStatus().equals("tersedia")) {
-                            %>
+
                             <a href="pendonoranController?aksi=insert&jenis=1&email=<%= email%>&idPost=<%= list.get(i).getId()%>" class="btn red lighten-1 btn-join">Request</a>
-                            <% } else {%>
-                            <a href="#" class="red-text text-lighten-1"> Status : <%= list.get(i).getStatus()%></a>
-                            <% } %>
+
                         </div>
                     </div>
                 </div>
                 <% }
+                        }
                     }%>
             </div>
         </div>
